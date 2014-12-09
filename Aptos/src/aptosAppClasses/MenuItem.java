@@ -16,7 +16,7 @@ public class MenuItem {
 		}
 	}
 	
-	public boolean isSoldOut() {
+	public boolean itemIsSoldOut() {
 		if (ingredients.size() < 1) return true;
 		for (Ingredient ing : ingredients) {
 			if (ing.isSoldOut()) return true;

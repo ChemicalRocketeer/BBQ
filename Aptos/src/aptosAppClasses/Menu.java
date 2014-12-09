@@ -16,16 +16,17 @@ public class Menu {
 			ingredients.add(ing);
 		}
 	}
-	
+	//confused as to what you are doing running a loop that finds a first occurence seems
+	//incomplete
 	public Ingredient getIngredient(String name) {
 		for (Ingredient ing : ingredients) {
-			if (ing.getName() == name) {
+			if (ing.getName().equals(name)) {
 				return ing;
 			}
 		}
 		return NULL_INGREDIENT;
 	}
-	
+	//should we check for a duplicate
 	public void addMenuItem(MenuItem mi) {
 		menuItems.add(mi);
 	}
@@ -42,7 +43,7 @@ public class Menu {
 		for (MenuItem mi : menuItems) {
 			steve.append(mi.getName());
 			steve.append(": ");
-			if (mi.isSoldOut()) {
+			if (mi.itemIsSoldOut()) {
 				steve.append("Sold Out");
 			} else {
 				steve.append(mi.getCost());
