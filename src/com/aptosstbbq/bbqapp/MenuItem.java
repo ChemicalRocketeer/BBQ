@@ -7,6 +7,7 @@ public class MenuItem {
 	
 	private String name = "Unnamed Menu Item";
 	private List<Ingredient> ingredients = new ArrayList<>();
+	private List<InterchangableIngredient> interchangableIngredients = new ArrayList<>();
 	private double cost = -1.0;
 	
 	public MenuItem(String name, double cost, Ingredient... ings) {
@@ -36,6 +37,12 @@ public class MenuItem {
 	public void addIngredient(Ingredient ing) {
 		if (!ingredients.contains(ing)){
 			ingredients.add(ing);
+		}
+	}
+	
+	public void addInterchangableIngredient(InterchangableIngredient ing) {
+		if (!interchangableIngredients.contains(ing)){
+			interchangableIngredients.add(ing);
 		}
 	}
 	
