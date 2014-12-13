@@ -31,6 +31,6 @@ public class Ingredient {
 	}
 	
 	public boolean equals(Ingredient other) {
-		return name == other.name;
+		return name.equals(other.name);
 	}
 }
