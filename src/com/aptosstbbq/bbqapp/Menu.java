@@ -56,7 +56,7 @@ public class Menu {
 			if (mi.isSoldOut()) {
 				steve.append("Sold Out");
 			} else {
-				steve.append(mi.getCost());
+				steve.append(mi.getPrice());
 			}
 			steve.append("\n");
 		}

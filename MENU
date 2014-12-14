@@ -35,7 +35,7 @@
         }
       ],
       "interchangableIngredients": [],
-      "cost": 14.99
+      "price": 14.99
     },
     {
       "name": "Tri-Tip Meal",
@@ -50,7 +50,7 @@
         }
       ],
       "interchangableIngredients": [],
-      "cost": 15.98
+      "price": 15.98
     },
     {
       "name": "Pulled Pork Sandwich",
@@ -65,7 +65,7 @@
         }
       ],
       "interchangableIngredients": [],
-      "cost": 14.98
+      "price": 14.98
     }
   ]
 }

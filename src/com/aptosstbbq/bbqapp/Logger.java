@@ -18,7 +18,7 @@ public class Logger {
 	
 	public void log(String s) {
 		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(LOG_FILE, true)))) {
-			out.print(s + "\n");
+			out.println(s);
 		} catch (Exception e) {}
 	}
 }
