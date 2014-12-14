@@ -14,6 +14,10 @@ public class Main {
 		menu.addMenuItem(new MenuItem("Pulled Pork Sandwich", 14.99, menu.getIngredient("Bread"), menu.getIngredient("Pulled Pork")));
 		menu.getIngredient("Pulled Pork").setSoldOut(true);
 		System.out.println(menu.toString());
+		Logger log = new Logger();
+		log.log("Line 1");
+		log.log("Line 2");
+		log.log("Line 3!!!");
 	}
 
 }
