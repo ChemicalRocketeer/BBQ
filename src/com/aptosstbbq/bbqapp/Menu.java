@@ -1,9 +1,6 @@
 package com.aptosstbbq.bbqapp;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,13 +48,7 @@ public class Menu {
 	public void saveMenu() {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String json = gson.toJson(this);
-		try {
-			PrintWriter out = new PrintWriter(new BufferedWriter(
-					new FileWriter("MENU", false)));
-			out.print(json);
-			out.close();
-		} catch (Exception e) {
-		}
+		ThreadedWriter.write("MENU", json);
 	}
 
 	public static Menu getMenuFromFile() {
