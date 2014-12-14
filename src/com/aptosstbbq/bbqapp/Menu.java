@@ -4,10 +4,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,51 +14,38 @@ import com.google.gson.GsonBuilder;
 
 public class Menu {
 
-	private List<Ingredient> ingredients = new ArrayList<>();
+	private HashMap<String, Ingredient> ingredients = new HashMap<>();
 	private List<MenuItem> menuItems = new ArrayList<>();
 
 	public static final Ingredient NULL_INGREDIENT = new Ingredient("NULL",
 			true);
 
-	public void addIngredient(Ingredient ing) {
-		if (!ingredients.contains(ing)) {
-			ingredients.add(ing);
+	public void toggleSoldOut(String ingredient) {
+		Ingredient ing = ingredients.get(ingredient);
+		if (ing != null) {
+			ing.setSoldOut(!ing.isSoldOut());
+			String message = ing.isSoldOut() ? "Sold Out:\t" : "Available:\t";
+			message += ingredient + '\t';
+			message += Utils.time();
+			Logger.SELL_OUT.log(message);
 		}
 	}
-
-	public Ingredient getIngredient(String name) {
-		for (Ingredient ing : ingredients) {
-			if (ing.getName() == name) {
-				return ing;
-			}
+	
+	public void addIngredient(Ingredient ing) {
+		if (!ingredients.containsKey(ing.getName())) {
+			ingredients.put(ing.getName(), ing);
 		}
-		return NULL_INGREDIENT;
+		Logger.MENU_CHANGES.log("Ingredient Added\t" + ing.toString() + '\t' + Utils.time());
 	}
 
 	public void addMenuItem(MenuItem mi) {
 		menuItems.add(mi);
+		Logger.MENU_CHANGES.log("Menu Item Added\t" + mi.toString() + '\t' + Utils.time());
 	}
 
-	public String toString() {
-		StringBuilder steve = new StringBuilder();
-		steve.append("Ingredients:\n");
-		for (Ingredient ing : ingredients) {
-			steve.append(ing.getName());
-			steve.append(": ");
-			steve.append(ing.isSoldOut() ? "Sold Out\n" : "In Stock\n");
-		}
-		steve.append("Menu Items:\n");
-		for (MenuItem mi : menuItems) {
-			steve.append(mi.getName());
-			steve.append(": ");
-			if (mi.isSoldOut()) {
-				steve.append("Sold Out");
-			} else {
-				steve.append(mi.getPrice());
-			}
-			steve.append("\n");
-		}
-		return steve.toString();
+	public Ingredient getIngredient(String name) {
+		Ingredient ing = ingredients.get(name);
+		return ing == null ? NULL_INGREDIENT : ing;
 	}
 
 	public void saveMenu() {
@@ -77,15 +62,35 @@ public class Menu {
 
 	public static Menu getMenuFromFile() {
 		StringBuilder string = new StringBuilder();
-		try {
-			File file = new File("MENU");
-			Scanner in = new Scanner(file);
-			while(in.hasNextLine()){
+		try (Scanner in = new Scanner(new File("MENU"))) {
+			while (in.hasNextLine()) {
 				string.append(in.nextLine());
 			}
 		} catch (Exception e) {
 		}
 		Gson obj = new Gson();
 		return obj.fromJson(string.toString(), Menu.class);
+	}
+
+	public String toString() {
+		StringBuilder steve = new StringBuilder();
+		steve.append("Ingredients:\n");
+		for (Ingredient ing : ingredients.values()) {
+			steve.append(ing.getName());
+			steve.append(": ");
+			steve.append(ing.isSoldOut() ? "Sold Out\n" : "In Stock\n");
+		}
+		steve.append("Menu Items:\n");
+		for (MenuItem mi : menuItems) {
+			steve.append(mi.getName());
+			steve.append(": ");
+			if (mi.isSoldOut()) {
+				steve.append("Sold Out");
+			} else {
+				steve.append(mi.getPrice());
+			}
+			steve.append("\n");
+		}
+		return steve.toString();
 	}
 }
