@@ -2,6 +2,7 @@ package com.aptosstbbq.bbqapp;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -30,17 +31,19 @@ public class Menu {
 			Logger.SELL_OUT.log(message);
 		}
 	}
-	
+
 	public void addIngredient(Ingredient ing) {
 		if (!ingredients.containsKey(ing.getName())) {
 			ingredients.put(ing.getName(), ing);
 		}
-		Logger.MENU_CHANGES.log("Ingredient Added\t" + ing.toString() + '\t' + Utils.time());
+		Logger.MENU_CHANGES.log("Ingredient Added\t" + ing.toString() + '\t'
+				+ Utils.time());
 	}
 
 	public void addMenuItem(MenuItem mi) {
 		menuItems.add(mi);
-		Logger.MENU_CHANGES.log("Menu Item Added\t" + mi.toString() + '\t' + Utils.time());
+		Logger.MENU_CHANGES.log("Menu Item Added\t" + mi.toString() + '\t'
+				+ Utils.time());
 	}
 
 	public Ingredient getIngredient(String name) {
@@ -51,11 +54,9 @@ public class Menu {
 	public void saveMenu() {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String json = gson.toJson(this);
-		try {
-			PrintWriter out = new PrintWriter(new BufferedWriter(
-					new FileWriter("MENU", false)));
+		try (PrintWriter out = new PrintWriter(new BufferedWriter(
+				new FileWriter("MENU", false)));) {
 			out.print(json);
-			out.close();
 		} catch (Exception e) {
 		}
 	}
@@ -66,7 +67,8 @@ public class Menu {
 			while (in.hasNextLine()) {
 				string.append(in.nextLine());
 			}
-		} catch (Exception e) {
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 		Gson obj = new Gson();
 		return obj.fromJson(string.toString(), Menu.class);

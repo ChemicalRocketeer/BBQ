@@ -13,7 +13,7 @@ public class MenuItem {
 	
 	public MenuItem(String name, BigDecimal price, Ingredient... ings) {
 		setName(name);
-		setCost(price);
+		setPrice(price);
 		for (Ingredient ing : ings) {
 			addIngredient(ing);
 		}
@@ -55,7 +55,11 @@ public class MenuItem {
 		return price;
 	}
 	
-	public void setCost(BigDecimal cost) {
-		this.price = cost;
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+	
+	public void setCost(String price) {
+		this.price = new BigDecimal(price);
 	}
 }
