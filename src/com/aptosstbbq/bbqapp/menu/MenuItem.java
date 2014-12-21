@@ -1,4 +1,4 @@
-package com.aptosstbbq.bbqapp;
+package com.aptosstbbq.bbqapp.menu;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

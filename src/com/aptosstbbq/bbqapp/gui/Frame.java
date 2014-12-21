@@ -1,4 +1,4 @@
-package com.aptosstbbq.bbqapp;
+package com.aptosstbbq.bbqapp.gui;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -10,6 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.aptosstbbq.bbqapp.menu.Ingredient;
+import com.aptosstbbq.bbqapp.menu.Menu;
+import com.aptosstbbq.bbqapp.menu.MenuItem;
 
 public class Frame extends JFrame implements ActionListener {
 	Scanner in = new Scanner(System.in);
