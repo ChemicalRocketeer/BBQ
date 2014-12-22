@@ -5,7 +5,7 @@ public class Logger {
 	public static final Logger DEFAULT = new Logger("log");
 	public static final Logger MENU_CHANGES = new Logger("menu_changes");
 	public static final Logger SELL_OUT = new Logger("sell_out");
-	public static final Logger FTP = new Logger("ftp");
+	public static final Logger WEB = new Logger("web");
 
 	private static final String FILE_EXTENSION = ".log";
 	

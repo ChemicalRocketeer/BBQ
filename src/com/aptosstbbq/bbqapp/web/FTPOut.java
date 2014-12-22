@@ -27,7 +27,7 @@ public class FTPOut {
 		try (InputStream fileReader = new FileInputStream(new File(localPath))) {
 			return write(fileReader);
 		} catch (Exception e) {
-			Logger.FTP.log(e.getMessage());
+			Logger.WEB.log(e.getMessage());
 			return false;
 		}
 	}
@@ -46,14 +46,14 @@ public class FTPOut {
 			ftpClient.enterLocalPassiveMode();
 			boolean done = ftpClient.storeFile(remotePath, stream);
 			if (done) {
-				Logger.FTP.log("Transfer successful: " + remotePath);
+				Logger.WEB.log("Transfer successful: " + remotePath);
 			} else {
-				Logger.FTP.log("Transfer failed: " + remotePath);
+				Logger.WEB.log("Transfer failed: " + remotePath);
 			}
 			return done;
 		} catch (IOException e) {
 			// System.out.println("Error: " + ex.getMessage());
-			Logger.FTP.log(e.getMessage());
+			Logger.WEB.log(e.getMessage());
 			return false;
 		} finally {
 			try {
@@ -62,7 +62,7 @@ public class FTPOut {
 					ftpClient.disconnect();
 				}
 			} catch (IOException e) {
-				Logger.FTP.log(e.getMessage());
+				Logger.WEB.log(e.getMessage());
 			}
 		}
 	}
@@ -84,13 +84,13 @@ public class FTPOut {
 				ftpClient.enterLocalPassiveMode();
 				done = ftpClient.storeFile(remotePath, stream);
 				if (done) {
-					Logger.FTP.log("Transfer successful: " + remotePath);
+					Logger.WEB.log("Transfer successful: " + remotePath);
 				} else {
-					Logger.FTP.log("Transfer failed: " + remotePath);
+					Logger.WEB.log("Transfer failed: " + remotePath);
 				}
 			} catch (IOException e) {
 				// System.out.println("Error: " + ex.getMessage());
-				Logger.FTP.log(e.getMessage());
+				Logger.WEB.log(e.getMessage());
 			} finally {
 				try {
 					if (ftpClient.isConnected()) {
@@ -98,7 +98,7 @@ public class FTPOut {
 						ftpClient.disconnect();
 					}
 				} catch (IOException e) {
-					Logger.FTP.log(e.getMessage());
+					Logger.WEB.log(e.getMessage());
 				}
 			}
 		}
