@@ -13,10 +13,10 @@ public class Utils {
 		try (Scanner in = new Scanner(new File(path))) {
 			while (in.hasNextLine()) {
 				steve.append(in.nextLine());
-				//steve.append('\n');
+				steve.append('\n');
 			}
 		} catch (FileNotFoundException e) {
-			//e.printStackTrace();
+			Logger.DEFAULT.log("Couldn't find file : " + path);
 		}
 		return steve.toString();
 	}
