@@ -1,11 +1,8 @@
 package com.aptosstbbq.bbqapp.menu;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 import com.aptosstbbq.bbqapp.Logger;
 import com.aptosstbbq.bbqapp.ThreadedWriter;
@@ -36,14 +33,12 @@ public class Menu {
 		if (!ingredients.containsKey(ing.getName())) {
 			ingredients.put(ing.getName(), ing);
 		}
-		Logger.MENU_CHANGES.log("Ingredient Added\t" + ing.toString() + '\t'
-				+ Utils.time());
+		Logger.MENU_CHANGES.log("Ingredient Added\t" + ing.toString());
 	}
 
 	public void addMenuItem(MenuItem mi) {
 		menuItems.add(mi);
-		Logger.MENU_CHANGES.log("Menu Item Added\t" + mi.toString() + '\t'
-				+ Utils.time());
+		Logger.MENU_CHANGES.log("Menu Item Added\t" + mi.toString());
 	}
 
 	public Ingredient getIngredient(String name) {
@@ -52,22 +47,21 @@ public class Menu {
 	}
 
 	public void saveMenu() {
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		String json = gson.toJson(this);
-		ThreadedWriter.write("MENU", json);
+		ThreadedWriter.write("MENU", toJSON());
+	}
+	
+	public static Menu fromJSON(String json) {
+		Gson obj = new Gson();
+		return obj.fromJson(json, Menu.class);
 	}
 
-	public static Menu getMenuFromFile() {
-		StringBuilder string = new StringBuilder();
-		try (Scanner in = new Scanner(new File("MENU"))) {
-			while (in.hasNextLine()) {
-				string.append(in.nextLine());
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		Gson obj = new Gson();
-		return obj.fromJson(string.toString(), Menu.class);
+	public static Menu fromFile(String path) {
+		return fromJSON(Utils.readFile(path));
+	}
+	
+	public String toJSON() {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		return gson.toJson(this);
 	}
 
 	public String toString() {
