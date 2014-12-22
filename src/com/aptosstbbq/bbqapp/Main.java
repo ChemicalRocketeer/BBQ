@@ -9,15 +9,17 @@ import java.io.File;
 import java.util.Calendar;
 import java.util.EventListener;
 import java.util.Scanner;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.aptosstbbq.bbqUI.Frame;
+import com.aptosstbbq.bbqUI.SoldOutFrame;
+
 public class Main{
 	public static void main(String[] args){
 		Frame jframe = new Frame();
-		System.out.println(Menu.getMenuFromFile());
-		
 	}
 }
