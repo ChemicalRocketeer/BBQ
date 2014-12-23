@@ -3,6 +3,8 @@ package com.aptosstbbq.bbqUI;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Collection;
 
 import javax.swing.JButton;
@@ -23,7 +25,7 @@ public class SOFRAME extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		bleh = Menu.fromJSON(new HTTPIn().read());
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -40,6 +42,7 @@ public class SOFRAME extends JFrame {
 	 * Create the frame.
 	 */
 	public SOFRAME() {
+		bleh = Menu.fromJSON(new HTTPIn().read());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -50,38 +53,45 @@ public class SOFRAME extends JFrame {
 		Ingredient[] ing_1 = new Ingredient[bleh.getIngredients().size()];
 		ing.toArray(ing_1);
 		JButton[] buttons = new JButton[bleh.getIngredients().size()];
-		for(int i = 0; i < buttons.length; i++){
+		for (int i = 0; i < buttons.length; i++) {
 			buttons[i] = new JButton(ing_1[i].getName());
 			buttons[i].setBackground(Color.GREEN);
 			buttons[i].setContentAreaFilled(false);
 			buttons[i].setOpaque(true);
+			buttons[i].addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					setSO((JButton) arg0.getSource());
+					System.out.println(bleh.toString());
+				}
+			});
 			contentPane.add(buttons[i]);
 		}
-	//	JButton btnNewButton = new JButton("New button");
-		//btnNewButton.setBackground(Color.GREEN);
-	//	btnNewButton.setContentAreaFilled(false);
-	//	btnNewButton.setOpaque(true);
-	
-	//	contentPane.add(btnNewButton);
-		
-	//	JButton btnNewButton_1 = new JButton("New button");
-	//	btnNewButton_1.setBackground(Color.GREEN);
-	//	btnNewButton_1.setContentAreaFilled(false);
-	//	btnNewButton_1.setOpaque(true);
-	//	contentPane.add(btnNewButton_1);
+		// JButton btnNewButton = new JButton("New button");
+		// btnNewButton.setBackground(Color.GREEN);
+		// btnNewButton.setContentAreaFilled(false);
+		// btnNewButton.setOpaque(true);
+
+		// contentPane.add(btnNewButton);
+
+		// JButton btnNewButton_1 = new JButton("New button");
+		// btnNewButton_1.setBackground(Color.GREEN);
+		// btnNewButton_1.setContentAreaFilled(false);
+		// btnNewButton_1.setOpaque(true);
+		// contentPane.add(btnNewButton_1);
 	}
-	private void setSO(JButton b){
+
+	private void setSO(JButton b) {
 		String check = b.getText();
 		bleh.toggleSoldOut(check);
-		if(bleh.getIngredient(check).isSoldOut()){
+		if (bleh.getIngredient(check).isSoldOut()) {
 			b.setBackground(Color.RED);
 			b.setContentAreaFilled(false);
 			b.setOpaque(true);
-		}
-		else{
+		} else {
 			b.setBackground(Color.GREEN);
 			b.setContentAreaFilled(false);
 			b.setOpaque(true);
 		}
+		bleh.saveMenu();
 	}
 }

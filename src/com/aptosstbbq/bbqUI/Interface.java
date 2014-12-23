@@ -24,6 +24,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import javax.swing.JToolBar;
 
 public class Interface extends JFrame {
 
@@ -105,15 +106,17 @@ public class Interface extends JFrame {
 		JButton btnNewButton_2 = new JButton("New button");
 		btnNewButton_2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				JTextField t = new JTextField();
 				
 			}
 		});
 		contentPane.add(btnNewButton_2, "2, 10");
 		
-		JButton btnNewButton_3 = new JButton("New button");
+		JButton btnNewButton_3 = new JButton("ADD INGREDIENT");
+		
 		contentPane.add(btnNewButton_3, "2, 12");
 		
-		JButton btnNewButton_4 = new JButton("New button");
+		JButton btnNewButton_4 = new JButton("ADD MENU ITEM");
 		contentPane.add(btnNewButton_4, "2, 14");
 		
 		textField = new JTextField();
