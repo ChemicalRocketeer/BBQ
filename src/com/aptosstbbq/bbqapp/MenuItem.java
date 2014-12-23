@@ -3,16 +3,17 @@ package com.aptosstbbq.bbqapp;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
-public class MenuItem {
-	
+	public class MenuItem {
 	private String name = "Unnamed Menu Item";
 	private List<Ingredient> ingredients = new ArrayList<>();
 	private List<InterchangableIngredient> interchangableIngredients = new ArrayList<>();
+	private double cost = -1.0;
 	private BigDecimal price = new BigDecimal("-1");
 	
+	public MenuItem(String name, double cost, Ingredient... ings) {
 	public MenuItem(String name, BigDecimal price, Ingredient... ings) {
 		setName(name);
+		setCost(cost);
 		setCost(price);
 		for (Ingredient ing : ings) {
 			addIngredient(ing);
@@ -26,35 +27,18 @@ public class MenuItem {
 	public boolean isSoldOut() {
 		if (ingredients.size() < 1) return true;
 		for (Ingredient ing : ingredients) {
-			if (ing.isSoldOut()) return true;
-		}
-		return false;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public void addIngredient(Ingredient ing) {
-		if (!ingredients.contains(ing)){
-			ingredients.add(ing);
+@@ -46,11 +51,11 @@ public class MenuItem {
 		}
 	}
 	
-	public void addInterchangableIngredient(InterchangableIngredient ing) {
-		if (!interchangableIngredients.contains(ing)){
-			interchangableIngredients.add(ing);
-		}
-	}
-	
+	public double getCost() {
+		return cost;
 	public BigDecimal getPrice() {
 		return price;
 	}
 	
+	public void setCost(double cost) {
+		this.cost = cost;
 	public void setCost(BigDecimal cost) {
 		this.price = cost;
 	}

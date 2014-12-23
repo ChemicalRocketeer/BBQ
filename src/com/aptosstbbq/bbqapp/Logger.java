@@ -3,16 +3,13 @@ package com.aptosstbbq.bbqapp;
 public class Logger {
 
 	public static final Logger DEFAULT = new Logger("log");
-	public static final Logger MENU_CHANGES = new Logger("log_menu_changes");
-	public static final Logger SELL_OUT = new Logger("log_sell_out");
+	public static final Logger MENU_CHANGES = new Logger("menu_changes");
+	public static final Logger SELL_OUT = new Logger("sell_out");
+	public static final Logger WEB = new Logger("web");
 
 	private static final String FILE_EXTENSION = ".log";
 	
 	private final String LOG_FILE;
-
-	public Logger() {
-		this("log");
-	}
 	
 	/**
 	 * Creates a new logger with the given filename. Don't provide a file
@@ -21,11 +18,11 @@ public class Logger {
 	 * 
 	 * @param logFile
 	 */
-	public Logger(String logFile) {
+	private Logger(String logFile) {
 		LOG_FILE = logFile + FILE_EXTENSION;
 	}
 
 	public void log(String s) {
-		ThreadedWriter.write(LOG_FILE, s, true);
+		ThreadedWriter.write(LOG_FILE, Utils.time() + " \t " + s, true);
 	}
 }

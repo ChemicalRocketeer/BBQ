@@ -4,6 +4,7 @@ public class Ingredient {
 	
 	private String name = "Unnamed Ingredient";
 	private boolean soldOut = false;
+	private boolean isCrucial = false;
 	
 	public Ingredient(String name) {
 		this(name, false);
@@ -17,7 +18,12 @@ public class Ingredient {
 	public String getName() {
 		return name;
 	}
-
+	public void setIsCrucial(boolean b){
+		isCrucial = b;
+	}
+	public boolean getisCrucial(){
+		return isCrucial;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}
