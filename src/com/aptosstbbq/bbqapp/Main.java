@@ -1,25 +1,11 @@
 package com.aptosstbbq.bbqapp;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.TextField;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.util.Calendar;
-import java.util.EventListener;
-import java.util.Scanner;
+import com.aptosstbbq.bbqapp.menu.Menu;
+import com.aptosstbbq.bbqapp.web.HTTPIn;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import com.aptosstbbq.bbqUI.Frame;
-import com.aptosstbbq.bbqUI.SoldOutFrame;
-
-public class Main{
-	public static void main(String[] args){
-		Frame jframe = new Frame();
+public class Main {
+	public static void main(String[] args) {
+		Menu menu = Menu.fromJSON(new HTTPIn().read());
+		System.out.println(menu.toString());
 	}
 }

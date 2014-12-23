@@ -3,17 +3,14 @@ package com.aptosstbbq.bbqUI;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.math.BigDecimal;
 import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-import com.aptosstbbq.bbqapp.Ingredient;
-import com.aptosstbbq.bbqapp.Menu;
-import com.aptosstbbq.bbqapp.MenuItem;
+import com.aptosstbbq.bbqapp.menu.Ingredient;
+import com.aptosstbbq.bbqapp.menu.Menu;
+import com.aptosstbbq.bbqapp.menu.MenuItem;
 
 public class Frame extends JFrame implements ActionListener {
 	Scanner in = new Scanner(System.in);

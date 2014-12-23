@@ -1,19 +1,15 @@
 package com.aptosstbbq.bbqUI;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.GridLayout;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.GridLayout;
-
-import javax.swing.JButton;
-
-import com.aptosstbbq.bbqapp.Menu;
-
-import java.awt.Color;
+import com.aptosstbbq.bbqapp.menu.Menu;
 
 public class SOFRAME extends JFrame {
 

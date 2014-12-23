@@ -8,8 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import com.aptosstbbq.bbqapp.Menu;
-import com.aptosstbbq.bbqapp.MenuItem;
+import com.aptosstbbq.bbqapp.menu.Menu;
 
 public class SoldOutFrame {
 	Menu bleh = new Menu();
