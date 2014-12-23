@@ -3,22 +3,27 @@ package com.aptosstbbq.bbqUI;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.util.Collection;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.aptosstbbq.bbqapp.menu.Ingredient;
 import com.aptosstbbq.bbqapp.menu.Menu;
+import com.aptosstbbq.bbqapp.web.HTTPIn;
 
 public class SOFRAME extends JFrame {
 
 	private JPanel contentPane;
-	Menu bleh = new Menu();
+	static Menu bleh = new Menu();
+
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		bleh = Menu.fromJSON(new HTTPIn().read());
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -41,26 +46,29 @@ public class SOFRAME extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(1, 0, 0, 0));
-		JButton[] buttons = new JButton[bleh.ingredients.size()];
+		Collection<Ingredient> ing = bleh.getIngredients();
+		Ingredient[] ing_1 = new Ingredient[bleh.getIngredients().size()];
+		ing.toArray(ing_1);
+		JButton[] buttons = new JButton[bleh.getIngredients().size()];
 		for(int i = 0; i < buttons.length; i++){
-			buttons[i] = new JButton(buttons[i].getName());
+			buttons[i] = new JButton(ing_1[i].getName());
 			buttons[i].setBackground(Color.GREEN);
 			buttons[i].setContentAreaFilled(false);
 			buttons[i].setOpaque(true);
 			contentPane.add(buttons[i]);
 		}
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBackground(Color.GREEN);
-		btnNewButton.setContentAreaFilled(false);
-		btnNewButton.setOpaque(true);
+	//	JButton btnNewButton = new JButton("New button");
+		//btnNewButton.setBackground(Color.GREEN);
+	//	btnNewButton.setContentAreaFilled(false);
+	//	btnNewButton.setOpaque(true);
+	
+	//	contentPane.add(btnNewButton);
 		
-		contentPane.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBackground(Color.GREEN);
-		btnNewButton_1.setContentAreaFilled(false);
-		btnNewButton_1.setOpaque(true);
-		contentPane.add(btnNewButton_1);
+	//	JButton btnNewButton_1 = new JButton("New button");
+	//	btnNewButton_1.setBackground(Color.GREEN);
+	//	btnNewButton_1.setContentAreaFilled(false);
+	//	btnNewButton_1.setOpaque(true);
+	//	contentPane.add(btnNewButton_1);
 	}
 	private void setSO(JButton b){
 		String check = b.getText();
