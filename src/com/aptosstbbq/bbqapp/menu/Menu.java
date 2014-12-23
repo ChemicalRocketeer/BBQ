@@ -1,6 +1,7 @@
 package com.aptosstbbq.bbqapp.menu;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,6 +35,10 @@ public class Menu {
 			ingredients.put(ing.getName(), ing);
 		}
 		Logger.MENU_CHANGES.log("Ingredient Added\t" + ing.toString());
+	}
+	
+	public Collection<Ingredient> getIngredients() {
+		return ingredients.values();
 	}
 
 	public void addMenuItem(MenuItem mi) {
