@@ -13,7 +13,7 @@ import com.google.gson.GsonBuilder;
 
 public class Menu {
 
-	private HashMap<String, Ingredient> ingredients = new HashMap<>();
+	public HashMap<String, Ingredient> ingredients = new HashMap<>();
 	private List<MenuItem> menuItems = new ArrayList<>();
 
 	public static final Ingredient NULL_INGREDIENT = new Ingredient("NULL",

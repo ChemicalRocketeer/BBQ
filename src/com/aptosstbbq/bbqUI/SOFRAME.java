@@ -41,7 +41,7 @@ public class SOFRAME extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(1, 0, 0, 0));
-		JButton[] buttons = new JButton[10];
+		JButton[] buttons = new JButton[bleh.ingredients.size()];
 		for(int i = 0; i < buttons.length; i++){
 			buttons[i] = new JButton(buttons[i].getName());
 			buttons[i].setBackground(Color.GREEN);
@@ -49,22 +49,22 @@ public class SOFRAME extends JFrame {
 			buttons[i].setOpaque(true);
 			contentPane.add(buttons[i]);
 		}
-		//JButton btnNewButton = new JButton("New button");
-		//btnNewButton.setBackground(Color.GREEN);
-		//btnNewButton.setContentAreaFilled(false);
-		//btnNewButton.setOpaque(true);
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBackground(Color.GREEN);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setOpaque(true);
 		
-		//contentPane.add(btnNewButton);
+		contentPane.add(btnNewButton);
 		
-	//	JButton btnNewButton_1 = new JButton("New button");
-		//btnNewButton_1.setBackground(Color.GREEN);
-	//	btnNewButton_1.setContentAreaFilled(false);
-	//	btnNewButton_1.setOpaque(true);
-	//	contentPane.add(btnNewButton_1);
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setBackground(Color.GREEN);
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton_1.setOpaque(true);
+		contentPane.add(btnNewButton_1);
 	}
 	private void setSO(JButton b){
 		String check = b.getText();
-		bleh.getIngredient(check).setSoldOut(!bleh.getIngredient(check).isSoldOut());
+		bleh.toggleSoldOut(check);
 		if(bleh.getIngredient(check).isSoldOut()){
 			b.setBackground(Color.RED);
 			b.setContentAreaFilled(false);
