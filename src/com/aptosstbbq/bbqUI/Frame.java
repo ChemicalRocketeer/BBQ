@@ -52,7 +52,7 @@ public class Frame extends JFrame implements ActionListener {
 		JButton out = new JButton("SET SOLD OUT");
 		ing.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				SoldOutFra1me sO = new SoldOutFrame();
+				SoldOutFrame sO = new SoldOutFrame();
 				sO.setVisible();
 			}
 		});

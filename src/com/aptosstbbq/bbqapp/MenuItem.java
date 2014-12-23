@@ -27,10 +27,8 @@ import java.util.List;
 	public boolean isSoldOut() {
 		if (ingredients.size() < 1) return true;
 		for (Ingredient ing : ingredients) {
-@@ -46,11 +51,11 @@ public class MenuItem {
+
 		}
-	}
-	
 	public double getCost() {
 		return cost;
 	public BigDecimal getPrice() {
