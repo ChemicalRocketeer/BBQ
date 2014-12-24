@@ -66,7 +66,7 @@ public class SOFRAME extends JFrame {
 			});
 			contentPane.add(buttons[i]);
 		}
-		// JButton btnNewButton = new JButton("New button");
+		// JButton btnNewButton = new ("New button");
 		// btnNewButton.setBackground(Color.GREEN);
 		// btnNewButton.setContentAreaFilled(false);
 		// btnNewButton.setOpaque(true);

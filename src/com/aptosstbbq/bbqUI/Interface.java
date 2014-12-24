@@ -14,22 +14,29 @@ import javax.swing.border.EmptyBorder;
 
 import com.aptosstbbq.bbqapp.menu.Menu;
 import com.aptosstbbq.bbqapp.web.WebIn;
+import com.aptosstbbq.bbqapp.web.WebOut;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.RowSpec;
+
 import java.awt.GridLayout;
+
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+
 import javax.swing.JToolBar;
+import javax.swing.JTextArea;
+import java.awt.Color;
+import java.awt.Font;
 
 public class Interface extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	static Menu bleh = new Menu();
 	Scanner in = new Scanner(System.in);
 	/**
@@ -53,6 +60,7 @@ public class Interface extends JFrame {
 	 * Create the frame.
 	 */
 	public Interface() {
+		setBackground(new Color(204, 153, 51));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 712, 568);
 		contentPane = new JPanel();
@@ -79,14 +87,18 @@ public class Interface extends JFrame {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
+				RowSpec.decode("default:grow"),
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
-		JLabel lblAposStUser = new JLabel("APTOS STREET BARBEQUE USER INTERFACE");
+		JLabel lblAposStUser = new JLabel("Aptos St Bbq User InterFace");
+		lblAposStUser.setBackground(new Color(153, 0, 153));
+		lblAposStUser.setForeground(new Color(0, 0, 0));
+		lblAposStUser.setFont(new Font("Times New Roman", Font.PLAIN, 21));
 		contentPane.add(lblAposStUser, "2, 2");
 		
-		JButton btnNewButton = new JButton("SET SOLD OUT");
+		JButton btnNewButton = new JButton("Set Sold Out");
+		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 21));
 		btnNewButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				SOFRAME sO = new SOFRAME();
@@ -95,34 +107,41 @@ public class Interface extends JFrame {
 		});
 		contentPane.add(btnNewButton, "2, 6");
 		
-		JButton btnNewButton_1 = new JButton("UPLOAD MENU");
+		JButton btnNewButton_1 = new JButton("Upload Menu");
+		btnNewButton_1.setFont(new Font("Times New Roman", Font.PLAIN, 21));
 		btnNewButton_1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				bleh.saveMenu();
 			}
 		});
 		contentPane.add(btnNewButton_1, "2, 8");
+		final JTextArea notification = new JTextArea();
+		notification.setText("Write here");
+		contentPane.add(notification, "2, 18, fill, fill");
 		
-		JButton btnNewButton_2 = new JButton("New button");
+		JButton btnNewButton_2 = new JButton("Add Push Notification");
+		btnNewButton_2.setFont(new Font("Times New Roman", Font.PLAIN, 21));
 		btnNewButton_2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				JTextField t = new JTextField();
-				
+				new WebOut(notification.getText());
+				notification.setText("Write here");
 			}
 		});
 		contentPane.add(btnNewButton_2, "2, 10");
 		
-		JButton btnNewButton_3 = new JButton("ADD INGREDIENT");
+		JButton btnNewButton_3 = new JButton("bleh");
+		btnNewButton_3.setFont(new Font("Times New Roman", Font.PLAIN, 21));
 		
 		contentPane.add(btnNewButton_3, "2, 12");
 		
-		JButton btnNewButton_4 = new JButton("ADD MENU ITEM");
+		JButton btnNewButton_4 = new JButton("Add Menu Item");
+		btnNewButton_4.setFont(new Font("Times New Roman", Font.PLAIN, 21));
 		contentPane.add(btnNewButton_4, "2, 14");
 		
-		textField = new JTextField();
-		contentPane.add(textField, "2, 20, fill, default");
-		textField.setColumns(10);
-	
+		JLabel lblEnterNotificationBelow = new JLabel("Enter notification below");
+		lblEnterNotificationBelow.setFont(new Font("Times New Roman", Font.PLAIN, 21));
+		
+		contentPane.add(lblEnterNotificationBelow, "2, 16");
 	}
 
 }
