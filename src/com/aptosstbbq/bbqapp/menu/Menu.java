@@ -52,7 +52,7 @@ public class Menu {
 	}
 
 	public void saveMenu() {
-		ThreadedWriter.write("MENU", toJSON());
+		ThreadedWriter.write("menu.json", toJSON());
 	}
 	
 	public static Menu fromJSON(String json) {
