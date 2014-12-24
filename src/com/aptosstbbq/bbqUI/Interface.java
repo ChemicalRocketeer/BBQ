@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import com.aptosstbbq.bbqapp.menu.Menu;
-import com.aptosstbbq.bbqapp.web.HTTPIn;
+import com.aptosstbbq.bbqapp.web.WebIn;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.factories.FormFactory;
@@ -36,7 +36,7 @@ public class Interface extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		bleh = Menu.fromJSON(new HTTPIn().read());
+		bleh = Menu.fromJSON(new WebIn().read());
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

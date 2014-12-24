@@ -9,7 +9,7 @@ import org.apache.commons.io.IOUtils;
 
 import com.aptosstbbq.bbqapp.Logger;
 
-public class HTTPIn {
+public class WebIn {
 
 	public String url = "http://digitalrocketry.com/bbq/menu.json";
 	
