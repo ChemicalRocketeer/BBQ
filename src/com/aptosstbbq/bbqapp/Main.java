@@ -6,6 +6,7 @@ import com.aptosstbbq.bbqapp.web.HTTPIn;
 public class Main {
 	public static void main(String[] args) {
 		Menu menu = Menu.fromJSON(new HTTPIn().read());
-		System.out.println(menu.toString());
+		//System.out.println(menu.toString());
+		System.out.println("hello");
 	}
 }
