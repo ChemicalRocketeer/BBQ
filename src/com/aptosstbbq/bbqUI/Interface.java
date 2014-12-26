@@ -37,12 +37,16 @@ import javax.swing.JTextArea;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JPasswordField;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
 
 public class Interface extends JFrame {
 
 	private JPanel contentPane;
 	static Menu bleh = new Menu();
 	Scanner in = new Scanner(System.in);
+	private JPasswordField pwdEnterPassword;
 	/**
 	 * Launch the application.
 	 */
@@ -67,6 +71,12 @@ public class Interface extends JFrame {
 		setBackground(new Color(204, 153, 51));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 712, 568);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu menu = new JMenu("");
+		menuBar.add(menu);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -109,6 +119,10 @@ public class Interface extends JFrame {
 				sO.setVisible(true);
 			}
 		});
+		
+		pwdEnterPassword = new JPasswordField();
+		pwdEnterPassword.setText("Enter Password");
+		contentPane.add(pwdEnterPassword, "2, 4, fill, default");
 		contentPane.add(btnNewButton, "2, 6");
 		
 		JButton btnNewButton_1 = new JButton("Upload Menu");
@@ -146,7 +160,7 @@ public class Interface extends JFrame {
 						notification.getText();
 				new WebOut(s);
 				final JFrame pop = new JFrame();
-				pop.setLayout(new GridLayout(2,1));
+				pop.getContentPane().setLayout(new GridLayout(2,1));
 				JTextField notify = new JTextField();
 				notify.setText("Your event has been uploaded");
 				notify.setFont(new Font("Times New Roman", Font.BOLD,29));
@@ -156,8 +170,8 @@ public class Interface extends JFrame {
 						pop.dispose();
 					}
 				});
-				pop.add(notify);
-				pop.add(ok);
+				pop.getContentPane().add(notify);
+				pop.getContentPane().add(ok);
 				pop.pack();
 				pop.setVisible(true);
 				notification.setText("Write here");
