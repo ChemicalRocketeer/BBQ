@@ -19,6 +19,8 @@
  */
 package org.jasypt.encryption;
 
+import org.jasypt.util.password.StrongPasswordEncryptor;
+
 
 /**
  * <p>
@@ -42,7 +44,7 @@ public interface StringEncryptor {
      */
     public String encrypt(String message);
     
-    
+
     /**
      * Decrypt an encrypted message
      * 
