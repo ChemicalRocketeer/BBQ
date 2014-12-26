@@ -66,18 +66,6 @@ public class SOFRAME extends JFrame {
 			});
 			contentPane.add(buttons[i]);
 		}
-		// JButton btnNewButton = new ("New button");
-		// btnNewButton.setBackground(Color.GREEN);
-		// btnNewButton.setContentAreaFilled(false);
-		// btnNewButton.setOpaque(true);
-
-		// contentPane.add(btnNewButton);
-
-		// JButton btnNewButton_1 = new JButton("New button");
-		// btnNewButton_1.setBackground(Color.GREEN);
-		// btnNewButton_1.setContentAreaFilled(false);
-		// btnNewButton_1.setOpaque(true);
-		// contentPane.add(btnNewButton_1);
 	}
 
 	private void setSO(JButton b) {

@@ -12,6 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import NotifyUser.Event;
+
+import com.aptosstbbq.bbqapp.Utils;
 import com.aptosstbbq.bbqapp.menu.Menu;
 import com.aptosstbbq.bbqapp.web.WebIn;
 import com.aptosstbbq.bbqapp.web.WebOut;
@@ -31,6 +34,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JToolBar;
 import javax.swing.JTextArea;
+
 import java.awt.Color;
 import java.awt.Font;
 
@@ -134,8 +138,32 @@ public class Interface extends JFrame {
 		
 		contentPane.add(btnNewButton_3, "2, 12");
 		
-		JButton btnNewButton_4 = new JButton("Add Menu Item");
+		JButton btnNewButton_4 = new JButton("Add Bbq Event");
 		btnNewButton_4.setFont(new Font("Times New Roman", Font.PLAIN, 21));
+		btnNewButton_4.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				String s = "Last modified on " + Utils.time() + "/n" +
+						notification.getText();
+				new WebOut(s);
+				final JFrame pop = new JFrame();
+				pop.setLayout(new GridLayout(2,1));
+				JTextField notify = new JTextField();
+				notify.setText("Your event has been uploaded");
+				notify.setFont(new Font("Times New Roman", Font.BOLD,29));
+				JButton ok = new JButton("Ok");
+				ok.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						pop.dispose();
+					}
+				});
+				pop.add(notify);
+				pop.add(ok);
+				pop.pack();
+				pop.setVisible(true);
+				notification.setText("Write here");
+			}
+		});
+		
 		contentPane.add(btnNewButton_4, "2, 14");
 		
 		JLabel lblEnterNotificationBelow = new JLabel("Enter notification below");
