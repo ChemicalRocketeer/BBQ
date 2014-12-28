@@ -186,5 +186,4 @@ public class Interface extends JFrame {
 		
 		contentPane.add(lblEnterNotificationBelow, "2, 16");
 	}
-
 }
