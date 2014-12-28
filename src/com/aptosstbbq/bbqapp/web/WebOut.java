@@ -73,11 +73,6 @@ public class WebOut extends Thread {
 		return status;
 	}
 
-	public WebOut setStatus(Status status) {
-		this.status = status;
-		return this;
-	}
-
 	public String getServer() {
 		return server;
 	}

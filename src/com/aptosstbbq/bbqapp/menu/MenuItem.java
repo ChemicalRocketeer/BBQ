@@ -8,6 +8,8 @@ import java.util.List;
 public class MenuItem {
 	
 	private String name = "Unnamed Menu Item";
+	private String description = "No Description";
+	private String category = null;
 	private List<String> ingredients = new ArrayList<>();
 	private List<InterchangableIngredient> interchangableIngredients = new ArrayList<>();
 	private BigDecimal price = new BigDecimal("-1");

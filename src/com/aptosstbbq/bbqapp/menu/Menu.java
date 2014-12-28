@@ -119,4 +119,10 @@ public class Menu {
 			return ing == null ? NULL_INGREDIENT : ing;
 		}
 	}
+
+	public void reset() {
+		for (Ingredient ing : getIngredients()) {
+			ing.setSoldOut(false);
+		}
+	}
 }
