@@ -12,6 +12,7 @@ import java.util.List;
 import org.apache.commons.net.ftp.FTPClient;
 
 import com.aptosstbbq.bbqapp.Logger;
+import com.aptosstbbq.bbqapp.menu.Menu;
 
 public class WebOut extends Thread {
 
@@ -30,6 +31,22 @@ public class WebOut extends Thread {
 
 	public static enum Status {
 		IDLE, WORKING, ERROR, COMPLETE;
+	}
+
+	public static void out(Menu menu) {
+		new WebOut(menu).start();
+	}
+
+	public static void out(String content) {
+		new WebOut(content).start();
+	}
+
+	public static void out(InputStream content) {
+		new WebOut(content).start();
+	}
+
+	public WebOut(Menu menu) {
+		this(menu.toJSON());
 	}
 
 	public WebOut(InputStream source) {

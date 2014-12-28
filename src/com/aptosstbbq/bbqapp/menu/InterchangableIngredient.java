@@ -1,21 +1,20 @@
 package com.aptosstbbq.bbqapp.menu;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class InterchangableIngredient {
 	
-	ArrayList<Ingredient> interchangables = new ArrayList<>();
+	List<String> interchangables = new ArrayList<>();
 	
-	public InterchangableIngredient(Ingredient... vars) {
-		for(Ingredient ing : vars){
+	public InterchangableIngredient(String... vars) {
+		for (String ing : vars) {
 			interchangables.add(ing);
 		}
 	}
-	
-	public boolean isSoldOut() {
-		for (Ingredient ing : interchangables) {
-			if (!ing.isSoldOut()) return false;
-		}
-		return true;
+
+	public List<String> getIngredients() {
+		return Collections.unmodifiableList(interchangables);
 	}
 }

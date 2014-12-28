@@ -1,23 +1,41 @@
 package com.aptosstbbq.bbqapp.menu;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
 import com.aptosstbbq.bbqapp.Logger;
-import com.aptosstbbq.bbqapp.ThreadedWriter;
 import com.aptosstbbq.bbqapp.Utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class Menu {
 
-	public HashMap<String, Ingredient> ingredients = new HashMap<>();
+	public IngredientSet ingredients = new IngredientSet();
 	private List<MenuItem> menuItems = new ArrayList<>();
 
-	public static final Ingredient NULL_INGREDIENT = new Ingredient("NULL",
-			true);
+	public static final Ingredient NULL_INGREDIENT = new Ingredient("NULL", true);
+
+	public boolean isSoldOut(MenuItem mi) {
+		for (String ing : mi.getIngredients()) {
+			if (getIngredient(ing).isSoldOut()) return true;
+		}
+		for (InterchangableIngredient inter : mi.getInterchangableIngredients()) {
+			if (isSoldOut(inter))
+				return true;
+		}
+		return false;
+	}
+
+	public boolean isSoldOut(InterchangableIngredient inter) {
+		for (String ing : inter.getIngredients()) {
+			// if any ingredient is available, the InterchangableIngredient is available.
+			if (!getIngredient(ing).isSoldOut())
+				return false;
+		}
+		return true;
+	}
 
 	public void toggleSoldOut(String ingredient) {
 		Ingredient ing = ingredients.get(ingredient);
@@ -36,9 +54,13 @@ public class Menu {
 		}
 		Logger.MENU_CHANGES.log("Ingredient Added\t" + ing.toString());
 	}
-	
-	public Collection<Ingredient> getIngredients() {
-		return ingredients.values();
+
+	public List<Ingredient> getIngredients() {
+		return Collections.unmodifiableList(new ArrayList<Ingredient>(ingredients.values()));
+	}
+
+	public List<MenuItem> getMenuItems() {
+		return Collections.unmodifiableList(menuItems);
 	}
 
 	public void addMenuItem(MenuItem mi) {
@@ -51,19 +73,16 @@ public class Menu {
 		return ing == null ? NULL_INGREDIENT : ing;
 	}
 
-	public void saveMenu() {
-		ThreadedWriter.write("menu.json", toJSON());
-	}
-	
 	public static Menu fromJSON(String json) {
 		Gson obj = new Gson();
-		return obj.fromJson(json, Menu.class);
+		Menu menu = obj.fromJson(json, Menu.class);
+		return menu != null ? menu : new Menu();
 	}
 
 	public static Menu fromFile(String path) {
 		return fromJSON(Utils.readFile(path));
 	}
-	
+
 	public String toJSON() {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		return gson.toJson(this);
@@ -81,7 +100,7 @@ public class Menu {
 		for (MenuItem mi : menuItems) {
 			steve.append(mi.getName());
 			steve.append(": ");
-			if (mi.isSoldOut()) {
+			if (isSoldOut(mi)) {
 				steve.append("Sold Out");
 			} else {
 				steve.append(mi.getPrice());
@@ -89,5 +108,15 @@ public class Menu {
 			steve.append("\n");
 		}
 		return steve.toString();
+	}
+
+	private class IngredientSet extends HashMap<String, Ingredient> {
+		private static final long serialVersionUID = 1L;
+
+		@Override
+		public Ingredient get(Object key) {
+			Ingredient ing = super.get(key);
+			return ing == null ? NULL_INGREDIENT : ing;
+		}
 	}
 }
