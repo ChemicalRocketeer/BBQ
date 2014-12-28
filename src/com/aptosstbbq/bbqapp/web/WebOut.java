@@ -156,11 +156,11 @@ public class WebOut extends Thread {
 		}
 		if (success) {
 			status = Status.COMPLETE;
-			for (ActionListener el : listeners) {
-				el.actionPerformed(new ActionEvent(this, 0, ""));
-			}
 		} else {
 			status = Status.ERROR;
+		}
+		for (ActionListener el : listeners) {
+			el.actionPerformed(new ActionEvent(this, 0, ""));
 		}
 	}
 
