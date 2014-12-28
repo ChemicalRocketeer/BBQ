@@ -129,7 +129,7 @@ public class Interface extends JFrame {
 		btnNewButton_2.setFont(new Font("Times New Roman", Font.PLAIN, 21));
 		btnNewButton_2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				new WebOut(notification.getText());
+				new WebOut(notification.getText()).setRemotePath("notification").start();
 				notification.setText("Write here");
 			}
 		});
@@ -146,7 +146,7 @@ public class Interface extends JFrame {
 			public void actionPerformed(ActionEvent e){
 				String s = "Last modified on " + Utils.time() + "/n" +
 						notification.getText();
-				new WebOut(s);
+				new WebOut(s).setRemotePath("event").start();
 				final JFrame pop = new JFrame();
 				pop.getContentPane().setLayout(new GridLayout(2,1));
 				JTextField notify = new JTextField();
