@@ -1,11 +1,27 @@
 package com.aptosstbbq.bbqapp;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.Scanner;
 
 public class Utils {
+
+	/** Writes the content to file, nothing more. */
+	public static void writeFile(String path, String content) {
+		writeFile(path, content, false);
+	}
+
+	/** Writes the content to file, nothing more. */
+	public static void writeFile(String path, String content, boolean append) {
+		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, append)))) {
+			out.print(content);
+		} catch (Exception e) {
+		}
+	}
 
 	/** Returns the whole contents of a file as a string, including endline characters */
 	public static String readFile(String path) {
