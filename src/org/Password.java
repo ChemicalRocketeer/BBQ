@@ -1,10 +1,12 @@
 package org;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
 public class Password implements StringEncryptor{
-
 	@Override
 	public String encrypt(String message) {
 		StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
