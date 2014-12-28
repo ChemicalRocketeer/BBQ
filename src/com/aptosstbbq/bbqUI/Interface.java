@@ -129,7 +129,13 @@ public class Interface extends JFrame {
 		btnNewButton_2.setFont(new Font("Times New Roman", Font.PLAIN, 21));
 		btnNewButton_2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				new WebOut(notification.getText()).setRemotePath("notification").start();
+				new WebOut(notification.getText()).setRemotePath("notification")
+				.addListener(new ActionListener(){
+					public void actionPerformed(ActionEvent arg){
+						System.out.println(((WebOut) arg.getSource()).getStatus());
+					}
+				}
+						).start();
 				notification.setText("Write here");
 			}
 		});
