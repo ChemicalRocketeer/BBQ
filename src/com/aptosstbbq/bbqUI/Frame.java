@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import com.aptosstbbq.bbqapp.menu.Ingredient;
 import com.aptosstbbq.bbqapp.menu.Menu;
 import com.aptosstbbq.bbqapp.menu.MenuItem;
+import com.aptosstbbq.bbqapp.web.WebOut;
 
 public class Frame extends JFrame implements ActionListener {
 	Scanner in = new Scanner(System.in);
@@ -33,7 +34,7 @@ public class Frame extends JFrame implements ActionListener {
  
             public void actionPerformed(ActionEvent e)
             {
-                item.saveMenu(); 
+				WebOut.out(item);
             }
         }); 
 		frame.add(upload);

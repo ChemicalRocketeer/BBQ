@@ -60,7 +60,6 @@ public class SOFRAME extends JFrame {
 			buttons[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					setSO((JButton) arg0.getSource());
-					new WebOut(bleh.toJSON()).start();
 					System.out.println(bleh.toString());
 				}
 			});
@@ -79,6 +78,6 @@ public class SOFRAME extends JFrame {
 			b.setContentAreaFilled(false);
 			b.setOpaque(true);
 		}
-		bleh.saveMenu();
+		WebOut.out(bleh);
 	}
 }
