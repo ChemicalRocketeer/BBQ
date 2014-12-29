@@ -1,11 +1,11 @@
 {
   "ingredients": {
-    "Tri-Tip": {
-      "name": "Tri-Tip",
-      "soldOut": false
-    },
     "Cole Slaw": {
       "name": "Cole Slaw",
+      "soldOut": false
+    },
+    "Bread": {
+      "name": "Bread",
       "soldOut": false
     },
     "Pulled Pork": {
@@ -16,53 +16,38 @@
       "name": "Bleu Cheese",
       "soldOut": false
     },
-    "Bread": {
-      "name": "Bread",
+    "Tri-Tip": {
+      "name": "Tri-Tip",
       "soldOut": false
     }
   },
   "menuItems": [
     {
       "name": "Tri-Tip Sandwich",
+      "description": "No Description",
       "ingredients": [
-        {
-          "name": "Bread",
-          "soldOut": false
-        },
-        {
-          "name": "Tri-Tip",
-          "soldOut": false
-        }
+        "Bread",
+        "Tri-Tip"
       ],
       "interchangableIngredients": [],
       "price": 14.99
     },
     {
       "name": "Tri-Tip Meal",
+      "description": "No Description",
       "ingredients": [
-        {
-          "name": "Bread",
-          "soldOut": false
-        },
-        {
-          "name": "Tri-Tip",
-          "soldOut": false
-        }
+        "Bread",
+        "Tri-Tip"
       ],
       "interchangableIngredients": [],
       "price": 15.99
     },
     {
       "name": "Pulled Pork Sandwich",
+      "description": "No Description",
       "ingredients": [
-        {
-          "name": "Bread",
-          "soldOut": false
-        },
-        {
-          "name": "Pulled Pork",
-          "soldOut": true
-        }
+        "Bread",
+        "Pulled Pork"
       ],
       "interchangableIngredients": [],
       "price": 14.99
