@@ -23,7 +23,10 @@ public class Utils {
 		}
 	}
 
-	/** Returns the whole contents of a file as a string, including endline characters */
+	/**
+	 * Returns the whole contents of a file as a string, including endline characters. Returns null
+	 * if the file does not exist.
+	 */
 	public static String readFile(String path) {
 		StringBuilder steve = new StringBuilder();
 		try (Scanner in = new Scanner(new File(path))) {
@@ -33,6 +36,7 @@ public class Utils {
 			}
 		} catch (FileNotFoundException e) {
 			Logger.DEFAULT.log("Couldn't find file : " + path);
+			return null;
 		}
 		return steve.toString();
 	}

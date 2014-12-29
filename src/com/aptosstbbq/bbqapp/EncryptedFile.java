@@ -14,6 +14,7 @@ public class EncryptedFile {
 
 	private final String adminPassDecr;
 	private boolean valid;
+	private boolean adminPassPathExists;
 	public final String DATA_PATH;
 	public final String ADMIN_PASS_PATH;
 
@@ -52,12 +53,23 @@ public class EncryptedFile {
 		DATA_PATH = dataPath;
 		// check the password
 		String adminPassEncr = Utils.readFile(ADMIN_PASS_PATH);
-		valid = new BasicPasswordEncryptor().checkPassword(adminPass, adminPassEncr);
+		if (adminPassEncr == null) {
+			valid = false;
+			adminPassPathExists = false;
+		} else {
+			valid = new BasicPasswordEncryptor().checkPassword(adminPass, adminPassEncr);
+			adminPassPathExists = true;
+		}
 	}
 
 	/** Returns true if this EncryptedFile was initialized with a valid password */
 	public boolean isValid() {
 		return valid;
+	}
+
+	/** Returns true if the adminPassPath given at initialization points to an existing file */
+	public boolean adminPassPathExists() {
+		return adminPassPathExists;
 	}
 
 	/**
