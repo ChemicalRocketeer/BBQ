@@ -38,7 +38,7 @@ public class Interface extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		bleh = Menu.fromJSON(new WebIn().read());
+		//bleh = Menu.fromJSON(new WebIn().read());
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
