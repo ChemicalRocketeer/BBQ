@@ -110,7 +110,7 @@ public class Menu {
 		return steve.toString();
 	}
 
-	private class IngredientSet extends HashMap<String, Ingredient> {
+	private static class IngredientSet extends HashMap<String, Ingredient> {
 		private static final long serialVersionUID = 1L;
 
 		@Override

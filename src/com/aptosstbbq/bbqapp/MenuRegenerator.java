@@ -18,8 +18,10 @@ public class MenuRegenerator {
 		menu.addMenuItem(new MenuItem("Tri-Tip Sandwich", "14.99", "Bread", "Tri-Tip"));
 		menu.addMenuItem(new MenuItem("Tri-Tip Meal", "15.99", "Bread", "Tri-Tip"));
 		menu.addMenuItem(new MenuItem("Pulled Pork Sandwich", "14.99", "Bread", "Pulled Pork"));
-		System.out.println(menu.toString());
-		WebOut.out(menu);
+		new WebOut(menu).addListener((ae) -> {
+			System.out.println(((WebOut) ae.getSource()).getStatus());
+		}).start();
+		//WebOut.out(menu);
 		ThreadedWriter.write(Const.MENU_FILE_NAME, menu.toJSON());
 	}
 }

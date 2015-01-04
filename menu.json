@@ -1,11 +1,11 @@
 {
   "ingredients": {
-    "Cole Slaw": {
-      "name": "Cole Slaw",
+    "Tri-Tip": {
+      "name": "Tri-Tip",
       "soldOut": false
     },
-    "Bread": {
-      "name": "Bread",
+    "Cole Slaw": {
+      "name": "Cole Slaw",
       "soldOut": false
     },
     "Pulled Pork": {
@@ -16,8 +16,8 @@
       "name": "Bleu Cheese",
       "soldOut": false
     },
-    "Tri-Tip": {
-      "name": "Tri-Tip",
+    "Bread": {
+      "name": "Bread",
       "soldOut": false
     }
   },
