@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import com.aptosstbbq.bbqapp.Logger;
 import com.aptosstbbq.bbqapp.Utils;
+import com.aptosstbbq.bbqapp.Logger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -43,7 +43,6 @@ public class Menu {
 			ing.setSoldOut(!ing.isSoldOut());
 			String message = ing.isSoldOut() ? "Sold Out:\t" : "Available:\t";
 			message += ingredient + '\t';
-			message += Utils.time();
 			Logger.SELL_OUT.log(message);
 		}
 	}
@@ -52,7 +51,6 @@ public class Menu {
 		if (!ingredients.containsKey(ing.getName())) {
 			ingredients.put(ing.getName(), ing);
 		}
-		Logger.MENU_CHANGES.log("Ingredient Added\t" + ing.toString());
 	}
 
 	public List<Ingredient> getIngredients() {
@@ -65,7 +63,6 @@ public class Menu {
 
 	public void addMenuItem(MenuItem mi) {
 		menuItems.add(mi);
-		Logger.MENU_CHANGES.log("Menu Item Added\t" + mi.toString());
 	}
 
 	public Ingredient getIngredient(String name) {
