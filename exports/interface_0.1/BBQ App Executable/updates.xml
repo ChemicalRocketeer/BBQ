@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updateDescriptor baseUrl="">
+  <entry targetMediaFileId="26" updatableVersionMin="" updatableVersionMax="" fileName="bbqapp_windows_0_1.exe" newVersion="0.1" newMediaFileId="26" fileSize="8292864" bundledJre="" archive="false">
+    <comment language="en" />
+  </entry>
+</updateDescriptor>

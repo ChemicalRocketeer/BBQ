@@ -1,5 +1,9 @@
 {
   "ingredients": {
+    "Beans": {
+      "name": "Beans",
+      "soldOut": false
+    },
     "Tri-Tip": {
       "name": "Tri-Tip",
       "soldOut": false
@@ -14,6 +18,10 @@
     },
     "Bleu Cheese": {
       "name": "Bleu Cheese",
+      "soldOut": false
+    },
+    "Salad": {
+      "name": "Salad",
       "soldOut": false
     },
     "Bread": {
@@ -41,6 +49,16 @@
       ],
       "interchangableIngredients": [],
       "price": 15.99
+    },
+    {
+      "name": "Tri-Tip Salad",
+      "description": "No Description",
+      "ingredients": [
+        "Salad",
+        "Tri-Tip"
+      ],
+      "interchangableIngredients": [],
+      "price": 14.99
     },
     {
       "name": "Pulled Pork Sandwich",
