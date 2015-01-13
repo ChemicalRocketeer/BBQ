@@ -12,14 +12,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.aptosstbbq.bbqapp.menu.Ingredient;
-import com.aptosstbbq.bbqapp.menu.Menu;
+import com.aptosstbbq.bbqapp.menu.BBQMenu;
 import com.aptosstbbq.bbqapp.web.WebIn;
 import com.aptosstbbq.bbqapp.web.WebOut;
 
 public class SOFRAME extends JFrame {
 
 	private JPanel contentPane;
-	static Menu bleh = new Menu();
+	static BBQMenu bleh = new BBQMenu();
 
 	/**
 	 * Launch the application.
@@ -42,7 +42,7 @@ public class SOFRAME extends JFrame {
 	 * Create the frame.
 	 */
 	public SOFRAME() {
-		bleh = Menu.fromJSON(new WebIn().read());
+		bleh = BBQMenu.fromJSON(new WebIn().read());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

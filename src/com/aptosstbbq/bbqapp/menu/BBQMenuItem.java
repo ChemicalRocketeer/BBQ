@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MenuItem {
+public class BBQMenuItem {
 	
-	private String name = "Unnamed Menu Item";
+	private String name = "Unnamed BBQMenu Item";
 	private String description = "No Description";
 	private String category = null;
 	private List<String> ingredients = new ArrayList<>();
 	private List<InterchangableIngredient> interchangableIngredients = new ArrayList<>();
 	private BigDecimal price = new BigDecimal("-1");
 	
-	public MenuItem(String name, BigDecimal price, String... ings) {
+	public BBQMenuItem(String name, BigDecimal price, String... ings) {
 		setName(name);
 		setPrice(price);
 		for (String ing : ings) {
@@ -22,7 +22,7 @@ public class MenuItem {
 		}
 	}
 	
-	public MenuItem(String name, String price, String... args) {
+	public BBQMenuItem(String name, String price, String... args) {
 		this (name, new BigDecimal(price), args);
 	}
 	

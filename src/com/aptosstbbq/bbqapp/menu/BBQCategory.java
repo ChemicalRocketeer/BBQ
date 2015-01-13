@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Category {
+public class BBQCategory {
 
-	private String name = "Unnamed Category";
-	private Category parent = null;
+	private String name = "Unnamed BBQCategory";
+	private BBQCategory parent = null;
 	private List<String> menuItems = new ArrayList<>();
 	private List<String> subCategories = new ArrayList<>();
 	
-	public Category(String name) {
+	public BBQCategory(String name) {
 		this.name = name;
 	}
 
@@ -23,11 +23,11 @@ public class Category {
 		this.name = name;
 	}
 
-	public Category getParent() {
+	public BBQCategory getParent() {
 		return parent;
 	}
 
-	public void setParent(Category parent) {
+	public void setParent(BBQCategory parent) {
 		this.parent = parent;
 	}
 
@@ -35,7 +35,7 @@ public class Category {
 		return Collections.unmodifiableList(menuItems);
 	}
 
-	public Category addMenuItem(String... items) {
+	public BBQCategory addMenuItem(String... items) {
 		for (String item : items) {
 			if (!menuItems.contains(item)) {
 				menuItems.add(item);
@@ -44,7 +44,7 @@ public class Category {
 		return this;
 	}
 
-	public Category removeMenuItem(String... items) {
+	public BBQCategory removeMenuItem(String... items) {
 		for (String item : items) {
 			menuItems.remove(item);
 		}
@@ -55,7 +55,7 @@ public class Category {
 		return Collections.unmodifiableList(subCategories);
 	}
 
-	public Category addSubCategory(String... subCats) {
+	public BBQCategory addSubCategory(String... subCats) {
 		for (String subcat : subCats) {
 			if (!subCategories.contains(subcat)) {
 				subCategories.add(subcat);
@@ -64,7 +64,7 @@ public class Category {
 		return this;
 	}
 
-	public Category removeSubCategory(String... subCats) {
+	public BBQCategory removeSubCategory(String... subCats) {
 		for (String subcat : subCats) {
 			menuItems.remove(subcat);
 		}

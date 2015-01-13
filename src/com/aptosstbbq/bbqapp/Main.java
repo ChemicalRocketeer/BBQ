@@ -4,14 +4,14 @@ import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.aptosstbbq.bbqapp.menu.Menu;
+import com.aptosstbbq.bbqapp.menu.BBQMenu;
 import com.aptosstbbq.bbqapp.util.Logger;
 import com.aptosstbbq.bbqapp.web.WebIn;
 import com.aptosstbbq.bbqapp.web.WebOut;
 
 public class Main {
 	public static void main(String[] args) {
-		final Menu menu = Menu.fromJSON(new WebIn().read());
+		final BBQMenu bBQMenu = BBQMenu.fromJSON(new WebIn().read());
 		
 		// Create a calendar marking the first reset
 		Calendar resetCal = Calendar.getInstance();
@@ -27,8 +27,8 @@ public class Main {
 		resetTimer.scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
-				menu.reset();
-				WebOut.out(menu);
+				bBQMenu.reset();
+				WebOut.out(bBQMenu);
 				Logger.DEFAULT.log("reset menu");
 			}
 		}, WAIT, PERIOD);

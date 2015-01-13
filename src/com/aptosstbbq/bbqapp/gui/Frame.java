@@ -9,21 +9,21 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import com.aptosstbbq.bbqapp.menu.Ingredient;
-import com.aptosstbbq.bbqapp.menu.Menu;
-import com.aptosstbbq.bbqapp.menu.MenuItem;
+import com.aptosstbbq.bbqapp.menu.BBQMenu;
+import com.aptosstbbq.bbqapp.menu.BBQMenuItem;
 import com.aptosstbbq.bbqapp.web.WebOut;
 
 public class Frame extends JFrame implements ActionListener {
 	Scanner in = new Scanner(System.in);
-	Menu bleh = new Menu();
+	BBQMenu bleh = new BBQMenu();
 	
 	public Frame() {
-		final Menu item = new Menu();
+		final BBQMenu item = new BBQMenu();
 		final int WIDTH = 1000;
 		final int HEIGHT = 1000;
 		//basic jframe
 		JFrame.setDefaultLookAndFeelDecorated(true);
-		JFrame frame = new JFrame("Aptos St ADD Menu");
+		JFrame frame = new JFrame("Aptos St ADD BBQMenu");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setLayout(new GridLayout(2, 2));
@@ -60,8 +60,8 @@ public class Frame extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e){
 				String set = in.next();
 				String price = in.next();
-				MenuItem add = new MenuItem(set,price);
-				bleh.addMenuItem(add);
+				BBQMenuItem add = new BBQMenuItem(set,price);
+				bleh.addBBQMenuItem(add);
 			}
 		});
 		frame.add(addMenuItem);

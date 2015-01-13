@@ -14,8 +14,7 @@ public class WebIn {
 	public String url = "http://digitalrocketry.com/bbq/menu.json";
 	
 	public String read() {
-		try {
-			InputStream in = new URL(url).openStream();
+		try (InputStream in = new URL(url).openStream()) {
 			return IOUtils.toString(in);
 		} catch (MalformedURLException e) {
 			Logger.WEB.log("Malformed url: " + url);

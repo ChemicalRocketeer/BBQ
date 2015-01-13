@@ -8,13 +8,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import com.aptosstbbq.bbqapp.menu.Menu;
+import com.aptosstbbq.bbqapp.menu.BBQMenu;
 
 public class SoldOutFrame {
-	Menu bleh = new Menu();
+	BBQMenu bleh = new BBQMenu();
 	JFrame frame;
 	public SoldOutFrame() {
-		final Menu item = new Menu();
+		final BBQMenu item = new BBQMenu();
 		final int WIDTH = 1000;
 		final int HEIGHT = 1000;
 		JFrame.setDefaultLookAndFeelDecorated(true);

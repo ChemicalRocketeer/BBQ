@@ -10,14 +10,14 @@ import com.aptosstbbq.bbqapp.util.Utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class Menu {
+public class BBQMenu {
 
 	public IngredientSet ingredients = new IngredientSet();
-	private List<MenuItem> menuItems = new ArrayList<>();
+	private List<BBQMenuItem> menuItems = new ArrayList<>();
 
 	public static final Ingredient NULL_INGREDIENT = new Ingredient("NULL", true);
 
-	public boolean isSoldOut(MenuItem mi) {
+	public boolean isSoldOut(BBQMenuItem mi) {
 		for (String ing : mi.getIngredients()) {
 			if (getIngredient(ing).isSoldOut()) return true;
 		}
@@ -57,11 +57,11 @@ public class Menu {
 		return Collections.unmodifiableList(new ArrayList<Ingredient>(ingredients.values()));
 	}
 
-	public List<MenuItem> getMenuItems() {
+	public List<BBQMenuItem> getBBQMenuItems() {
 		return Collections.unmodifiableList(menuItems);
 	}
 
-	public void addMenuItem(MenuItem mi) {
+	public void addBBQMenuItem(BBQMenuItem mi) {
 		menuItems.add(mi);
 	}
 
@@ -70,13 +70,13 @@ public class Menu {
 		return ing == null ? NULL_INGREDIENT : ing;
 	}
 
-	public static Menu fromJSON(String json) {
+	public static BBQMenu fromJSON(String json) {
 		Gson obj = new Gson();
-		Menu menu = obj.fromJson(json, Menu.class);
-		return menu != null ? menu : new Menu();
+		BBQMenu bBQMenu = obj.fromJson(json, BBQMenu.class);
+		return bBQMenu != null ? bBQMenu : new BBQMenu();
 	}
 
-	public static Menu fromFile(String path) {
+	public static BBQMenu fromFile(String path) {
 		return fromJSON(Utils.readFile(path));
 	}
 
@@ -93,8 +93,8 @@ public class Menu {
 			steve.append(": ");
 			steve.append(ing.isSoldOut() ? "Sold Out\n" : "In Stock\n");
 		}
-		steve.append("Menu Items:\n");
-		for (MenuItem mi : menuItems) {
+		steve.append("BBQMenu Items:\n");
+		for (BBQMenuItem mi : menuItems) {
 			steve.append(mi.getName());
 			steve.append(": ");
 			if (isSoldOut(mi)) {

@@ -11,7 +11,7 @@ import java.util.List;
 
 import org.apache.commons.net.ftp.FTPClient;
 
-import com.aptosstbbq.bbqapp.menu.Menu;
+import com.aptosstbbq.bbqapp.menu.BBQMenu;
 import com.aptosstbbq.bbqapp.util.Logger;
 
 public class WebOut extends Thread {
@@ -33,8 +33,8 @@ public class WebOut extends Thread {
 		IDLE, WORKING, ERROR, COMPLETE;
 	}
 
-	public static void out(Menu menu) {
-		new WebOut(menu).start();
+	public static void out(BBQMenu bBQMenu) {
+		new WebOut(bBQMenu).start();
 	}
 
 	public static void out(String content) {
@@ -45,8 +45,8 @@ public class WebOut extends Thread {
 		new WebOut(content).start();
 	}
 
-	public WebOut(Menu menu) {
-		this(menu.toJSON());
+	public WebOut(BBQMenu bBQMenu) {
+		this(bBQMenu.toJSON());
 	}
 
 	public WebOut(InputStream source) {

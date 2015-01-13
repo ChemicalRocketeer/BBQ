@@ -19,7 +19,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import com.aptosstbbq.bbqapp.menu.Menu;
+import com.aptosstbbq.bbqapp.menu.BBQMenu;
 import com.aptosstbbq.bbqapp.util.Utils;
 import com.aptosstbbq.bbqapp.web.WebIn;
 import com.aptosstbbq.bbqapp.web.WebOut;
@@ -31,14 +31,14 @@ import com.jgoodies.forms.layout.RowSpec;
 public class Interface extends JFrame {
 
 	private JPanel contentPane;
-	static Menu bleh = new Menu();
+	static BBQMenu bleh = new BBQMenu();
 	Scanner in = new Scanner(System.in);
 	private JPasswordField pwdEnterPassword;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		//bleh = Menu.fromJSON(new WebIn().read());
+		//bleh = BBQMenu.fromJSON(new WebIn().read());
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -113,7 +113,7 @@ public class Interface extends JFrame {
 		contentPane.add(pwdEnterPassword, "2, 4, fill, default");
 		contentPane.add(btnNewButton, "2, 6");
 		
-		JButton btnNewButton_1 = new JButton("Upload Menu");
+		JButton btnNewButton_1 = new JButton("Upload BBQMenu");
 		btnNewButton_1.setFont(new Font("Times New Roman", Font.PLAIN, 21));
 		btnNewButton_1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
