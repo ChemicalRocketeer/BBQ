@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import com.aptosstbbq.bbqapp.Utils;
-import com.aptosstbbq.bbqapp.Logger;
+import com.aptosstbbq.bbqapp.util.Logger;
+import com.aptosstbbq.bbqapp.util.Utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

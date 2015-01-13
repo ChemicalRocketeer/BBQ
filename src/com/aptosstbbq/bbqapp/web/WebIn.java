@@ -7,7 +7,7 @@ import java.net.URL;
 
 import org.apache.commons.io.IOUtils;
 
-import com.aptosstbbq.bbqapp.Logger;
+import com.aptosstbbq.bbqapp.util.Logger;
 
 public class WebIn {
 

@@ -1,4 +1,4 @@
-package com.aptosstbbq.bbqapp;
+package com.aptosstbbq.bbqapp.security;
 
 public class EncryptedPassword {
 

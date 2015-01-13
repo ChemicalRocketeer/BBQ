@@ -1,4 +1,4 @@
-package com.aptosstbbq.bbqUI;
+package com.aptosstbbq.bbqapp.gui;
 
 import java.awt.Color;
 import java.awt.GridLayout;

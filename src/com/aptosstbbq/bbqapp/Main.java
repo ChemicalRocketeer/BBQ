@@ -5,7 +5,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import com.aptosstbbq.bbqapp.menu.Menu;
-import com.aptosstbbq.bbqapp.Logger;
+import com.aptosstbbq.bbqapp.util.Logger;
 import com.aptosstbbq.bbqapp.web.WebIn;
 import com.aptosstbbq.bbqapp.web.WebOut;
 

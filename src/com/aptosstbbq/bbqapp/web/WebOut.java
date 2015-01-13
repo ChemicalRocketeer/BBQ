@@ -11,8 +11,8 @@ import java.util.List;
 
 import org.apache.commons.net.ftp.FTPClient;
 
-import com.aptosstbbq.bbqapp.Logger;
 import com.aptosstbbq.bbqapp.menu.Menu;
+import com.aptosstbbq.bbqapp.util.Logger;
 
 public class WebOut extends Thread {
 

@@ -1,4 +1,4 @@
-package com.aptosstbbq.bbqUI;
+package com.aptosstbbq.bbqapp.gui;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -19,8 +19,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import com.aptosstbbq.bbqapp.Utils;
 import com.aptosstbbq.bbqapp.menu.Menu;
+import com.aptosstbbq.bbqapp.util.Utils;
 import com.aptosstbbq.bbqapp.web.WebIn;
 import com.aptosstbbq.bbqapp.web.WebOut;
 import com.jgoodies.forms.factories.FormFactory;

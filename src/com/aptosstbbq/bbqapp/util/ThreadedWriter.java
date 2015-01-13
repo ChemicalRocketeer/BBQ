@@ -1,4 +1,4 @@
-package com.aptosstbbq.bbqapp;
+package com.aptosstbbq.bbqapp.util;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

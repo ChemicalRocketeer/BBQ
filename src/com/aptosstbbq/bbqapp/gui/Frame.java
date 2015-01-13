@@ -15,6 +15,8 @@ import com.aptosstbbq.bbqapp.web.WebOut;
 
 public class Frame extends JFrame implements ActionListener {
 	Scanner in = new Scanner(System.in);
+	Menu bleh = new Menu();
+	
 	public Frame() {
 		final Menu item = new Menu();
 		final int WIDTH = 1000;
@@ -41,24 +43,25 @@ public class Frame extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e){
 				String set = in.next();
 				Ingredient add = new Ingredient(set);
-				
+				bleh.addIngredient(add);
 			}
 		});
 		frame.add(ing);
-		JButton setSoldOut = new JButton("SET SOLD OUT");
+		JButton out = new JButton("SET SOLD OUT");
 		ing.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				String set = in.next();
-				item.toggleSoldOut(set);
-				
+				SoldOutFrame sO = new SoldOutFrame();
+				sO.setVisible();
 			}
 		});
+		frame.add(out);
 		JButton addMenuItem = new JButton("ADD MENU ITEM");
 		ing.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				String set = in.next();
 				String price = in.next();
 				MenuItem add = new MenuItem(set,price);
+				bleh.addMenuItem(add);
 			}
 		});
 		frame.add(addMenuItem);
@@ -71,3 +74,4 @@ public class Frame extends JFrame implements ActionListener {
 		
 	}
 }
+
