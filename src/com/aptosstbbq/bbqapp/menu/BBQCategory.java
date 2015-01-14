@@ -8,8 +8,8 @@ public class BBQCategory {
 
 	private String name = "Unnamed BBQCategory";
 	private BBQCategory parent = null;
-	private List<String> menuItems = new ArrayList<>();
-	private List<String> subCategories = new ArrayList<>();
+	private List<String> menuItems = new ArrayList<String>();
+	private List<String> subCategories = new ArrayList<String>();
 	
 	public BBQCategory(String name) {
 		this.name = name;

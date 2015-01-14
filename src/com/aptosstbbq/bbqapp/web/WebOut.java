@@ -27,7 +27,7 @@ public class WebOut extends Thread {
 
 	private final InputStream source;
 
-	private List<ActionListener> listeners = new LinkedList<>();
+	private List<ActionListener> listeners = new LinkedList<ActionListener>();
 
 	public static enum Status {
 		IDLE, WORKING, ERROR, COMPLETE;

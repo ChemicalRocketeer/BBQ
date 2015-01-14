@@ -24,10 +24,14 @@ public class ThreadedWriter extends Thread {
 	}
 
 	public void run() {
-		try (PrintWriter out = new PrintWriter(new BufferedWriter(
-				new FileWriter(fileName, append)))) {
+		PrintWriter out = null;
+		try {
+			out = new PrintWriter(new BufferedWriter(new FileWriter(fileName, append)));
 			out.println(contents);
 		} catch (Exception e) {
+		} finally {
+			if (out != null)
+				out.close();
 		}
 	}
 }

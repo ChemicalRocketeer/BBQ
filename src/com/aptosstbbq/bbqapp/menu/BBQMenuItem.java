@@ -10,8 +10,8 @@ public class BBQMenuItem {
 	private String name = "Unnamed BBQMenu Item";
 	private String description = "No Description";
 	private String category = null;
-	private List<String> ingredients = new ArrayList<>();
-	private List<InterchangableIngredient> interchangableIngredients = new ArrayList<>();
+	private List<String> ingredients = new ArrayList<String>();
+	private List<InterchangableIngredient> interchangableIngredients = new ArrayList<InterchangableIngredient>();
 	private BigDecimal price = new BigDecimal("-1");
 	
 	public BBQMenuItem(String name, BigDecimal price, String... ings) {

@@ -13,7 +13,7 @@ import com.google.gson.GsonBuilder;
 public class BBQMenu {
 
 	public IngredientSet ingredients = new IngredientSet();
-	private List<BBQMenuItem> menuItems = new ArrayList<>();
+	private List<BBQMenuItem> menuItems = new ArrayList<BBQMenuItem>();
 
 	public static final Ingredient NULL_INGREDIENT = new Ingredient("NULL", true);
 

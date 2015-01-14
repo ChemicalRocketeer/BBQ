@@ -14,12 +14,21 @@ public class WebIn {
 	public String url = "http://digitalrocketry.com/bbq/menu.json";
 	
 	public String read() {
-		try (InputStream in = new URL(url).openStream()) {
+		InputStream in = null;
+		try {
+			in = new URL(url).openStream();
 			return IOUtils.toString(in);
 		} catch (MalformedURLException e) {
 			Logger.WEB.log("Malformed url: " + url);
 		} catch (IOException e) {
 			Logger.WEB.log("Failed to read remote file: " + url);
+		} finally {
+			if (in != null)
+				try {
+					in.close();
+				} catch (IOException e) {
+					Logger.DEFAULT.log("Problem closing InputStream in WebIn:\n" + e.getStackTrace());
+				}
 		}
 		return "";
 	}
