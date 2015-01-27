@@ -6,17 +6,26 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.aptosstbbq.bbqapp.util.Logger;
-import com.aptosstbbq.bbqapp.util.Utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class BBQMenu {
 
-	public IngredientSet ingredients = new IngredientSet();
-	private List<BBQMenuItem> menuItems = new ArrayList<BBQMenuItem>();
+	private HashMap<String, Ingredient> ingredients = new HashMap<>();
+	private HashMap<String, BBQMenuItem> menuItems = new HashMap<>();
+	private HashMap<String, BBQCategory> categories = new HashMap<>();
 
 	public static final Ingredient NULL_INGREDIENT = new Ingredient("NULL", true);
 
+	public boolean isSoldOut(BBQCategory cat) {
+		for (String item : cat.getMenuItems()) {
+			if (!isSoldOut(getMenuItem(item))) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	public boolean isSoldOut(BBQMenuItem mi) {
 		for (String ing : mi.getIngredients()) {
 			if (getIngredient(ing).isSoldOut()) return true;
@@ -47,37 +56,46 @@ public class BBQMenu {
 		}
 	}
 
-	public void addIngredient(Ingredient ing) {
-		if (!ingredients.containsKey(ing.getName())) {
-			ingredients.put(ing.getName(), ing);
-		}
-	}
-
 	public List<Ingredient> getIngredients() {
 		return Collections.unmodifiableList(new ArrayList<Ingredient>(ingredients.values()));
 	}
 
 	public List<BBQMenuItem> getBBQMenuItems() {
-		return Collections.unmodifiableList(menuItems);
+		return Collections.unmodifiableList(new ArrayList<BBQMenuItem>(menuItems.values()));
+	}
+
+	public List<BBQCategory> getBBQCategories() {
+		return Collections.unmodifiableList(new ArrayList<BBQCategory>(categories.values()));
+	}
+
+	public void addIngredient(Ingredient mi) {
+		ingredients.put(mi.getName(), mi);
 	}
 
 	public void addBBQMenuItem(BBQMenuItem mi) {
-		menuItems.add(mi);
+		menuItems.put(mi.getName(), mi);
+	}
+
+	public void addBBQCategory(BBQCategory mi) {
+		categories.put(mi.getName(), mi);
 	}
 
 	public Ingredient getIngredient(String name) {
-		Ingredient ing = ingredients.get(name);
-		return ing == null ? NULL_INGREDIENT : ing;
+		return ingredients.get(name);
+	}
+
+	public BBQMenuItem getMenuItem(String name) {
+		return menuItems.get(name);
+	}
+
+	public BBQCategory getCategory(String name) {
+		return categories.get(name);
 	}
 
 	public static BBQMenu fromJSON(String json) {
 		Gson obj = new Gson();
 		BBQMenu bBQMenu = obj.fromJson(json, BBQMenu.class);
 		return bBQMenu != null ? bBQMenu : new BBQMenu();
-	}
-
-	public static BBQMenu fromFile(String path) {
-		return fromJSON(Utils.readFile(path));
 	}
 
 	public String toJSON() {
@@ -94,7 +112,7 @@ public class BBQMenu {
 			steve.append(ing.isSoldOut() ? "Sold Out\n" : "In Stock\n");
 		}
 		steve.append("BBQMenu Items:\n");
-		for (BBQMenuItem mi : menuItems) {
+		for (BBQMenuItem mi : getBBQMenuItems()) {
 			steve.append(mi.getName());
 			steve.append(": ");
 			if (isSoldOut(mi)) {
@@ -105,16 +123,6 @@ public class BBQMenu {
 			steve.append("\n");
 		}
 		return steve.toString();
-	}
-
-	private static class IngredientSet extends HashMap<String, Ingredient> {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public Ingredient get(Object key) {
-			Ingredient ing = super.get(key);
-			return ing == null ? NULL_INGREDIENT : ing;
-		}
 	}
 
 	public void reset() {
