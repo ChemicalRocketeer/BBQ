@@ -6,7 +6,10 @@ import java.util.List;
 
 public class BBQCategory {
 
-	private String name = "Unnamed BBQCategory";
+	private static long nextID = 0;
+	public final long id = nextID++;
+
+	private String name = "Unnamed Category";
 	private BBQCategory parent = null;
 	private List<String> menuItems = new ArrayList<String>();
 	private List<String> subCategories = new ArrayList<String>();

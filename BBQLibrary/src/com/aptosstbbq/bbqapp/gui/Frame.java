@@ -61,7 +61,7 @@ public class Frame extends JFrame implements ActionListener {
 				String set = in.next();
 				String price = in.next();
 				BBQMenuItem add = new BBQMenuItem(set,price);
-				bleh.addBBQMenuItem(add);
+				bleh.addMenuItem(add);
 			}
 		});
 		frame.add(addMenuItem);
