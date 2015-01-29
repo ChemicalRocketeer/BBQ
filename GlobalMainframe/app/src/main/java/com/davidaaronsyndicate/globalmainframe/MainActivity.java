@@ -1,13 +1,17 @@
 package com.davidaaronsyndicate.globalmainframe;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
@@ -31,15 +35,23 @@ public class MainActivity extends ActionBarActivity implements WebIn.Listener {
         setContentView(R.layout.activity_main);
         new WebIn().addListener(this).execute(WebIn.defaultURL);
     }
+
     private void displayButtons(){
+        GradientDrawable shape = new GradientDrawable();
+        shape.setCornerRadius(8);
+        Display d = ((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        int screenWidth = d.getWidth();
         List<Ingredient> ings = menu.getIngredients();
         GridLayout layout = (GridLayout) findViewById(R.id.setSoldOut);
         layout.setColumnCount(4);
         for(Ingredient ing : ings){
             Button b = new Button(this);
+           // b.setBackground(shape);
+            b.setWidth(screenWidth/4);
             b.setText(ing.getName());
             b.setBackgroundColor(ing.isSoldOut() ? Color.RED : Color.GREEN);
             b.setGravity(Gravity.CENTER);
+
             layout.addView(b);
             Log.i(TAG, ing.getName());
             b.setOnClickListener(new View.OnClickListener() {
