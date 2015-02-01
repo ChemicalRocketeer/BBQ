@@ -27,7 +27,6 @@ public class ThreadedWriter extends Thread {
 	public void run() {
 		PrintWriter out = null;
 		try {
-			// new File(fileName).mkdirs();
 			out = new PrintWriter(new BufferedWriter(new FileWriter(fileName, append)));
 			out.println(contents);
 		} catch (IOException e) {
