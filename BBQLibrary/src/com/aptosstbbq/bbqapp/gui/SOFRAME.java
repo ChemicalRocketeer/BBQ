@@ -68,16 +68,13 @@ public class SOFRAME extends JFrame {
 	}
 	private void setSO(JButton b) {
 		String check = b.getText();
-		bleh.toggleSoldOut(check);
-		if (bleh.getIngredient(check).isSoldOut()) {
-			b.setBackground(Color.RED);
-			b.setContentAreaFilled(false);
-			b.setOpaque(true);
-		} else {
-			b.setBackground(Color.GREEN);
-			b.setContentAreaFilled(false);
-			b.setOpaque(true);
-		}
+		Ingredient ing = bleh.getIngredient(check);
+		ing.toggleStatus();
+		b.setBackground(Ingredient.STATUS_COLORS[ing.getStatus()]);
+		b.setContentAreaFilled(false);
+		b.setOpaque(true);
+		b.setContentAreaFilled(false);
+		b.setOpaque(true);
 		WebOut.out(bleh);
 	}
 }
