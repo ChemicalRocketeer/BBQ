@@ -20,6 +20,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(dir: 'lib', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
+    compile files('C:/Users/Aaron/Documents/GitHub/BBQ/BBQUserApp/lib/bbq-essentials.jar')
 }
