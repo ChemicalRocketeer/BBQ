@@ -68,11 +68,12 @@ public class SOFRAME extends JFrame {
 			contentPane.add(buttons[i]);
 		}
 	}
+
 	private void setSO(JButton b) {
 		String check = b.getText();
 		Ingredient ing = bleh.getIngredient(check);
 		ing.toggleStatus();
-		b.setBackground(Ingredient.STATUS_COLORS[ing.getStatus()]);
+		b.setBackground(new Color(Ingredient.STATUS_COLORS[ing.getStatus()]));
 		b.setContentAreaFilled(false);
 		b.setOpaque(true);
 		b.setContentAreaFilled(false);

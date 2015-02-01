@@ -43,7 +43,7 @@ public class Utils {
 				steve.append('\n');
 			}
 		} catch (FileNotFoundException e) {
-			Logger.DEFAULT.log("Couldn't find file : " + path);
+			Logger.ERROR.log("Couldn't find file : " + path);
 			return null;
 		} finally {
 			if (in != null)

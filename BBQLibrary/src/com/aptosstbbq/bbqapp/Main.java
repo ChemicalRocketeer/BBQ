@@ -31,7 +31,7 @@ public class Main {
 			public void run() {
 				menu.reset();
 				WebOut.out(menu);
-				Logger.DEFAULT.log("reset menu");
+				Logger.ERROR.log("reset menu");
 			}
 		}, WAIT, PERIOD);
 	}

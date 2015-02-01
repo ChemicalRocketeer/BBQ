@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.aptosstbbq.bbqapp.menu.BBQMenu;
 import com.aptosstbbq.bbqapp.menu.Ingredient;
+import com.aptosstbbq.bbqapp.util.Logger;
 import com.aptosstbbq.bbqapp.web.WebIn;
 
 import java.util.List;
@@ -25,7 +26,13 @@ public class SoldOut extends ActionBarActivity implements WebIn.Listener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sold_out);
-        new WebIn().addListener(this).execute(WebIn.defaultURL);
+        Logger.ERROR.addListener(new Logger.Listener() {
+            public void loggerEvent(Logger l, String message) {
+                Log.e(TAG, "Error log:\n" + message);
+            }
+        });
+        Thread steve = new Thread(new WebIn().addListener(this), "WebIn Menu Read Thread");
+        steve.start();
     }
 
     private void displaySoldOutItems(BBQMenu menu){
@@ -54,9 +61,9 @@ public class SoldOut extends ActionBarActivity implements WebIn.Listener {
     }
 
     @Override
-    public void WebInComplete(WebIn win) {
-        Log.i(TAG, win.getResult());
-        if (win.getResult().equals("")) {
+    public void webInComplete(WebIn win, WebIn.Status st, String result) {
+        if (st != WebIn.Status.SUCCESS) {
+            Log.i(TAG, win.getResult());
             Log.w(TAG, "failed to read menu from web");
             LinearLayout build = (LinearLayout) findViewById(R.id.soldOutDisplay);
             TextView v = new TextView(this);
@@ -64,7 +71,7 @@ public class SoldOut extends ActionBarActivity implements WebIn.Listener {
             v.setTextColor(Color.WHITE);
             build.addView(v);
         } else {
-            displaySoldOutItems(BBQMenu.fromJSON(win.getResult()));
+            displaySoldOutItems(BBQMenu.fromJSON(result));
         }
     }
 

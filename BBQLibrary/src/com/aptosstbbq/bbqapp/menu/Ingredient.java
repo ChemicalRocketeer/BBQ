@@ -1,6 +1,5 @@
 package com.aptosstbbq.bbqapp.menu;
 
-import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,10 +25,11 @@ public class Ingredient {
 	public static final String[] STATUS_STRINGS = { "available", "running low", "sold out" };
 
 	/**
-	 * An array of colors for statuses. Used to get standardized colors without verbose, error-prone if statements.
-	 * To use, just access the array using the status as a parameter. For example: STATUS_COLORS[AVAILABLE] will give you Color.GREEN
+	 * An array of color hex values for statuses. Used to get standardized colors without verbose, error-prone if statements.
+	 * To use, just access the array using the status as a parameter. For example: STATUS_COLORS[AVAILABLE] will give you the hex of Color.GREEN
+	 * The colors are hex integers instead of using a color library so that they can be cross-platform.
 	 */
-	public static final Color[] STATUS_COLORS = { Color.GREEN, Color.YELLOW, Color.RED };
+	public static final int[] STATUS_COLORS = { 0x00FF00, 0xFFFF00, 0xFF0000 };
 
 	private List<Listener> listeners = new LinkedList<>();
 

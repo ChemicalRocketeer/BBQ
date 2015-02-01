@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="BBQLibrary/builds/bbq-essentials.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/BBQLibrary/builds/essentialsBuildDescription.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="true" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.chargen"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.imap"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.util"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;com.aptosstbbq.bbqapp.web{WebIn.java"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.io"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.io.monitor"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.time"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;com.google.gson.annotations"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.io.input"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;com.aptosstbbq.bbqapp.menu"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.nntp"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.echo"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.ftp"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.pop3"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.tftp"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.ntp"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;com.aptosstbbq.bbqapp.util"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.daytime"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.ftp.parser"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.finger"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.io.filefilter"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.io.output"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;com.google.gson.internal.bind"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;com.google.gson.stream"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;com.google.gson.internal"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.bsd"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.telnet"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.io.comparator"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;com.google.gson"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.discard"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.smtp"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;com.google.gson.reflect"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.io"/>
+        <javaElement handleIdentifier="=BBQLibrary/src&lt;org.apache.commons.net.whois"/>
+    </selectedElements>
+</jardesc>

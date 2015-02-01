@@ -56,7 +56,11 @@ public class WebIn implements Runnable {
 		try {
 			in = new URL(url).openStream();
 			result = IOUtils.toString(in, "UTF-8");
-			status = Status.SUCCESS;
+			if (result != null) {
+				status = Status.SUCCESS;
+			} else {
+				status = Status.FAILURE;
+			}
 		} catch (MalformedURLException e) {
 			Logger.WEB.log("Malformed url: " + url);
 			status = Status.FAILURE;
@@ -67,7 +71,7 @@ public class WebIn implements Runnable {
 			if (in != null) try {
 				in.close();
 			} catch (IOException e) {
-				Logger.DEFAULT.log("Problem closing InputStream in WebIn:\n" + e.getStackTrace());
+				Logger.ERROR.log("Problem closing InputStream in WebIn:\n" + e.getStackTrace());
 				status = Status.FAILURE;
 			}
 		}
