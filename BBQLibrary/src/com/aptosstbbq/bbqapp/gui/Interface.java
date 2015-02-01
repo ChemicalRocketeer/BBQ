@@ -21,7 +21,6 @@ import javax.swing.border.EmptyBorder;
 
 import com.aptosstbbq.bbqapp.menu.BBQMenu;
 import com.aptosstbbq.bbqapp.util.Utils;
-import com.aptosstbbq.bbqapp.web.WebIn;
 import com.aptosstbbq.bbqapp.web.WebOut;
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -130,9 +129,9 @@ public class Interface extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				new WebOut(notification.getText()).setRemotePath("notification")
-				.addListener(new ActionListener(){
-					public void actionPerformed(ActionEvent arg){
-						System.out.println(((WebOut) arg.getSource()).getStatus());
+				.addListener(new WebOut.Listener() {
+					public void webOutEvent(WebOut arg) {
+						System.out.println(arg.getStatus());
 					}
 				}
 						).start();
