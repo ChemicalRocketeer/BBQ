@@ -1,8 +1,5 @@
 package com.aptosstbbq.bbqapp;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import com.aptosstbbq.bbqapp.menu.BBQMenu;
 import com.aptosstbbq.bbqapp.menu.BBQMenuItem;
 import com.aptosstbbq.bbqapp.menu.Ingredient;
@@ -27,20 +24,20 @@ public class MenuRegenerator {
 		menu.addIngredient(new Ingredient("Salad"));
 		menu.addIngredient(new Ingredient("Bleu Cheese"));
 
-		menu.addMenuItem(new BBQMenuItem("Tri-Tip Sandwich", "14.99", "Bread", "Tri-Tip").addInterchangableIngredient(new InterchangableIngredient("Tri-Tip", "Cold Beef")));
-		menu.addMenuItem(new BBQMenuItem("Tri-Tip Meal", "15.99", "Bread", "Tri-Tip"));
-		menu.addMenuItem(new BBQMenuItem("Tri-Tip Salad", "14.99", "Salad", "Tri-Tip"));
-		menu.addMenuItem(new BBQMenuItem("Rib Sandwich", "14.99", "Bread", "Ribs"));
-		menu.addMenuItem(new BBQMenuItem("Pulled Pork Sandwich", "14.99", "Bread", "Pulled Pork"));
-		menu.addMenuItem(new BBQMenuItem("Bread", "14.99", "Bread"));
+		menu.addMenuItem(new BBQMenuItem("BBQ Sandwiches", "$9", "Bread", "BBQ Sauce").addInterchangableIngredient(new InterchangableIngredient("Tri-Tip", "Cold Beef", "Pulled Chicken", "Pulled Pork", "Cold Pork")));
+		menu.addMenuItem(new BBQMenuItem("Tri-Tip Meal", "$9", "Bread", "Tri-Tip"));
+		menu.addMenuItem(new BBQMenuItem("Tri-Tip Salad", "$7", "Salad", "Tri-Tip"));
+		menu.addMenuItem(new BBQMenuItem("Rib Sandwich", "$12", "Bread", "Ribs"));
+		menu.addMenuItem(new BBQMenuItem("Pulled Pork Sandwich", "$9", "Bread", "Pulled Pork"));
+		menu.addMenuItem(new BBQMenuItem("Bread", "", "Bread"));
 		menu.addMenuItem(new BBQMenuItem("BBQ Chicken Sandwich", "14.99", "Bread", "Pulled Chicken"));
 		menu.addMenuItem(new BBQMenuItem("Bleu Pig Sandwich", "14.99", "Bread", "Pulled Pork", "Bleu Cheese"));
 
-		new WebOut(menu).addListener(new ActionListener() {
+		new WebOut(menu).addListener(new WebOut.Listener() {
 
 			@Override
-			public void actionPerformed(ActionEvent ae) {
-				System.out.println(((WebOut) ae.getSource()).getStatus());
+			public void webOutEvent(WebOut w) {
+				System.out.println(w.getStatus());
 			}
 		}).start();
 		// WebOut.out(menu);

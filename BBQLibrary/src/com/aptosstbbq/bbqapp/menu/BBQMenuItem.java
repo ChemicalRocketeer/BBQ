@@ -9,7 +9,7 @@ public class BBQMenuItem {
 	private static long nextID = 0;
 	public final long id = nextID++;
 
-	private String name = "Unnamed Menu Item";
+	private String name;
 	private String description = null;
 	private String category = null;
 	private String price = null;
@@ -17,7 +17,7 @@ public class BBQMenuItem {
 	private List<InterchangableIngredient> interchangableIngredients = new ArrayList<InterchangableIngredient>();
 
 	public BBQMenuItem(String name, String... ings) {
-		setName(name);
+		this.name = name;
 		for (String ing : ings) {
 			addIngredient(ing);
 		}
@@ -32,6 +32,11 @@ public class BBQMenuItem {
 		this.interchangableIngredients = interchangables;
 	}
 
+	protected BBQMenuItem setName(String name) {
+		this.name = name;
+		return this;
+	}
+
 	public BBQMenuItem setDescription(String description) {
 		this.description = description;
 		return this;
@@ -44,11 +49,6 @@ public class BBQMenuItem {
 	
 	public BBQMenuItem setCategory(BBQCategory cat) {
 		return setCategory(cat.getName());
-	}
-
-	public BBQMenuItem setName(String name) {
-		this.name = name;
-		return this;
 	}
 
 	public BBQMenuItem setPrice(String price) {

@@ -15,9 +15,6 @@ public class Ingredient {
 	public enum Event {
 		SELLOUT;
 	}
-
-	private static long nextID = 0;
-	public final long id = nextID++;
 	
 	/** A status that an Ingredient can have. The lower the number, the better the availability. */
 	public static final int AVAILABLE = 0, RUNNING_LOW = 1, SOLD_OUT = 2;
@@ -36,7 +33,7 @@ public class Ingredient {
 
 	private List<Listener> listeners = new LinkedList<>();
 
-	private String name = "Unnamed Ingredient";
+	private String name;
 	private int defaultStatus = 0;
 	protected int status = 0; // protected so that BBQMenu can edit without triggering logging
 	
@@ -45,12 +42,12 @@ public class Ingredient {
 	}
 	
 	public Ingredient(String name, int status) {
-		setName(name);
+		this.name = name;
 		setStatus(status);
 	}
 
 	public Ingredient(String name, int status, int defaultStatus) {
-		setName(name);
+		this.name = name;
 		setStatus(status);
 		setDefaultStatus(defaultStatus);
 	}
@@ -60,12 +57,13 @@ public class Ingredient {
 		return this;
 	}
 	
-	public String getName() {
-		return name;
+	protected Ingredient setName(String name) {
+		this.name = name;
+		return this;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getName() {
+		return name;
 	}
 
 	/**
