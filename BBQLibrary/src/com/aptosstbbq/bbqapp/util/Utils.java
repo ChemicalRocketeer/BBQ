@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Scanner;
 
 public class Utils {
@@ -54,6 +55,16 @@ public class Utils {
 	/** Returns the current date and time as a string */
 	public static String time() {
 		return Calendar.getInstance().getTime().toString();
+	}
+
+	public static <T> boolean replaceFirstInstance(List<T> list, T oldInstance, T newInstance) {
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).equals(oldInstance)) {
+				list.set(i, newInstance);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public static <T> boolean arrayContains(T[] array, T element) {
