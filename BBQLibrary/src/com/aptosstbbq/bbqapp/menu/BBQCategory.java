@@ -8,8 +8,8 @@ import com.aptosstbbq.bbqapp.util.Utils;
 
 public class BBQCategory {
 
-	private String name;
-	private String parent = null;
+	private String name = "";
+	private String parent = "";
 	private List<String> menuItems = new ArrayList<>();
 	private List<BBQCategory> subCategories = new ArrayList<>();
 	

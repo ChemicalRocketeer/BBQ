@@ -25,14 +25,14 @@ public class MenuRegenerator {
 		menu.addIngredient(new Ingredient("Salad"));
 		menu.addIngredient(new Ingredient("Bleu Cheese"));
 
-		menu.addMenuItem(new BBQMenuItem("BBQ Sandwiches", "$9", "Bread", "BBQ Sauce").addInterchangableIngredient(new InterchangableIngredient("Tri-Tip", "Cold Beef", "Pulled Chicken", "Pulled Pork", "Cold Pork")));
-		menu.addMenuItem(new BBQMenuItem("Tri-Tip Meal", "$9", "Bread", "Tri-Tip"));
-		menu.addMenuItem(new BBQMenuItem("Tri-Tip Salad", "$7", "Salad", "Tri-Tip"));
-		menu.addMenuItem(new BBQMenuItem("Rib Sandwich", "$12", "Bread", "Ribs"));
-		menu.addMenuItem(new BBQMenuItem("Pulled Pork Sandwich", "$9", "Bread", "Pulled Pork"));
-		menu.addMenuItem(new BBQMenuItem("Bread", "", "Bread"));
-		menu.addMenuItem(new BBQMenuItem("BBQ Chicken Sandwich", "14.99", "Bread", "Pulled Chicken"));
-		menu.addMenuItem(new BBQMenuItem("Bleu Pig Sandwich", "14.99", "Bread", "Pulled Pork", "Bleu Cheese"));
+		menu.addMenuItem(new BBQMenuItem("BBQ Sandwiches", "Bread", "BBQ Sauce").addInterchangableIngredient(new InterchangableIngredient("Tri-Tip", "Cold Beef", "Pulled Chicken", "Pulled Pork", "Cold Pork")));
+		menu.addMenuItem(new BBQMenuItem("Tri-Tip Meal", "Bread", "Tri-Tip"));
+		menu.addMenuItem(new BBQMenuItem("Tri-Tip Salad", "Salad", "Tri-Tip"));
+		menu.addMenuItem(new BBQMenuItem("Rib Sandwich", "Bread", "Ribs"));
+		menu.addMenuItem(new BBQMenuItem("Pulled Pork Sandwich", "Bread", "Pulled Pork"));
+		menu.addMenuItem(new BBQMenuItem("Bread", "Bread"));
+		menu.addMenuItem(new BBQMenuItem("BBQ Chicken Sandwich", "Bread", "Pulled Chicken"));
+		menu.addMenuItem(new BBQMenuItem("Bleu Pig Sandwich", "Bread", "Pulled Pork", "Bleu Cheese"));
 
 		System.out.println("Uploading fresh menu...");
 		new WebOut(menu).addListener(new WebOut.Listener() {

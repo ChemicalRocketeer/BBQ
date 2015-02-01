@@ -51,10 +51,11 @@
   ],
   "menuItems": [
     {
-      "id": 0,
       "name": "BBQ Sandwiches",
+      "description": "",
+      "category": "",
+      "price": "",
       "ingredients": [
-        "$9",
         "Bread",
         "BBQ Sauce"
       ],
@@ -71,69 +72,76 @@
       ]
     },
     {
-      "id": 1,
       "name": "Tri-Tip Meal",
+      "description": "",
+      "category": "",
+      "price": "",
       "ingredients": [
-        "$9",
         "Bread",
         "Tri-Tip"
       ],
       "interchangableIngredients": []
     },
     {
-      "id": 2,
       "name": "Tri-Tip Salad",
+      "description": "",
+      "category": "",
+      "price": "",
       "ingredients": [
-        "$7",
         "Salad",
         "Tri-Tip"
       ],
       "interchangableIngredients": []
     },
     {
-      "id": 3,
       "name": "Rib Sandwich",
+      "description": "",
+      "category": "",
+      "price": "",
       "ingredients": [
-        "$12",
         "Bread",
         "Ribs"
       ],
       "interchangableIngredients": []
     },
     {
-      "id": 4,
       "name": "Pulled Pork Sandwich",
+      "description": "",
+      "category": "",
+      "price": "",
       "ingredients": [
-        "$9",
         "Bread",
         "Pulled Pork"
       ],
       "interchangableIngredients": []
     },
     {
-      "id": 5,
       "name": "Bread",
+      "description": "",
+      "category": "",
+      "price": "",
       "ingredients": [
-        "",
         "Bread"
       ],
       "interchangableIngredients": []
     },
     {
-      "id": 6,
       "name": "BBQ Chicken Sandwich",
+      "description": "",
+      "category": "",
+      "price": "",
       "ingredients": [
-        "14.99",
         "Bread",
         "Pulled Chicken"
       ],
       "interchangableIngredients": []
     },
     {
-      "id": 7,
       "name": "Bleu Pig Sandwich",
+      "description": "",
+      "category": "",
+      "price": "",
       "ingredients": [
-        "14.99",
         "Bread",
         "Pulled Pork",
         "Bleu Cheese"

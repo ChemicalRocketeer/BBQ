@@ -33,7 +33,7 @@ public class Ingredient {
 
 	private List<Listener> listeners = new LinkedList<>();
 
-	private String name;
+	private String name = "";
 	private int defaultStatus = 0;
 	protected int status = 0; // protected so that BBQMenu can edit without triggering logging
 	

@@ -15,6 +15,7 @@ public class BBQMenu {
 	 * Allows outside code to listen to BBQMenu events. This is useful when triggering events in GUI code. When the menu is reset, a new item is added, or an error occurs, the BBQMenuEvent method is called.
 	 */
 	public static interface Listener {
+
 		public void BBQMenuEvent(BBQMenu menu, Event event, Object arg);
 	}
 
@@ -46,8 +47,9 @@ public class BBQMenu {
 	}
 
 	public boolean isSoldOut(BBQMenuItem mi) {
-		for (String ing : mi.getIngredients()) {
-			if (getIngredient(ing).isSoldOut()) return true;
+		for (String ingName : mi.getIngredients()) {
+			Ingredient ing = getIngredient(ingName);
+			if (ing != null && ing.isSoldOut()) return true;
 		}
 		for (InterchangableIngredient inter : mi.getInterchangableIngredients()) {
 			if (getStatus(inter) == Ingredient.SOLD_OUT) return true;
@@ -60,9 +62,12 @@ public class BBQMenu {
 		int bestStatus = Ingredient.SOLD_OUT;
 		for (String ing : inter.getIngredients()) {
 			// the interchangableIngredient assumes the most available status of its ingredients
-			int stat = getIngredient(ing).getStatus();
-			if (stat > bestStatus) bestStatus = stat;
-			if (bestStatus == Ingredient.AVAILABLE) return bestStatus;
+			Ingredient ingr = getIngredient(ing);
+			if (ingr != null) {
+				int stat = getIngredient(ing).getStatus();
+				if (stat > bestStatus) bestStatus = stat;
+				if (bestStatus == Ingredient.AVAILABLE) return bestStatus;
+			}
 		}
 		return bestStatus;
 	}
@@ -89,6 +94,7 @@ public class BBQMenu {
 	}
 
 	public void setName(Ingredient ing, String name) {
+		if (ing == null || name == null) return;
 		String old = ing.getName();
 		ing.setName(name);
 		for (BBQMenuItem item : menuItems) {
@@ -98,6 +104,7 @@ public class BBQMenu {
 	}
 
 	public void setName(BBQMenuItem item, String name) {
+		if (item == null || name == null) return;
 		String old = item.getName();
 		item.setName(name);
 		for (BBQCategory cat : categories) {
@@ -107,6 +114,7 @@ public class BBQMenu {
 	}
 
 	public void setName(BBQCategory cat, String name) {
+		if (cat == null || name == null) return;
 		String old = cat.getName();
 		cat.setName(name);
 		for (BBQMenuItem item : menuItems) {

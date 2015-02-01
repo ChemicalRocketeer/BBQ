@@ -8,13 +8,10 @@ import com.aptosstbbq.bbqapp.util.Utils;
 
 public class BBQMenuItem {
 
-	private static long nextID = 0;
-	public final long id = nextID++;
-
 	private String name;
-	private String description = null;
-	private String category = null;
-	private String price = null;
+	private String description = "";
+	private String category = "";
+	private String price = "";
 	private List<String> ingredients = new ArrayList<String>();
 	private List<InterchangableIngredient> interchangableIngredients = new ArrayList<InterchangableIngredient>();
 
