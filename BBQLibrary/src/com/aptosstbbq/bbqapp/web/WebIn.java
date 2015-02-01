@@ -17,7 +17,7 @@ public class WebIn {
 		InputStream in = null;
 		try {
 			in = new URL(url).openStream();
-			return IOUtils.toString(in);
+			return IOUtils.toString(in, "UTF-8");
 		} catch (MalformedURLException e) {
 			Logger.WEB.log("Malformed url: " + url);
 		} catch (IOException e) {

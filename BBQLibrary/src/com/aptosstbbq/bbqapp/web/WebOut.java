@@ -1,11 +1,9 @@
 package com.aptosstbbq.bbqapp.web;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
+import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,6 +13,13 @@ import com.aptosstbbq.bbqapp.menu.BBQMenu;
 import com.aptosstbbq.bbqapp.util.Logger;
 
 public class WebOut extends Thread {
+
+	public static interface Listener {
+
+		public void webOutEvent(WebOut wo);
+	}
+
+	private List<Listener> listeners = new LinkedList<Listener>();
 
 	private String server = "www.digitalrocketry.com";
 	private int port = 21;
@@ -26,8 +31,6 @@ public class WebOut extends Thread {
 	private Status status = Status.IDLE;
 
 	private final InputStream source;
-
-	private List<ActionListener> listeners = new LinkedList<ActionListener>();
 
 	public static enum Status {
 		IDLE, WORKING, ERROR, COMPLETE;
@@ -45,27 +48,39 @@ public class WebOut extends Thread {
 		new WebOut(content).start();
 	}
 
-	public WebOut(BBQMenu bBQMenu) {
-		this(bBQMenu.toJSON());
+	public WebOut(BBQMenu menu) {
+		this(menu.toJSON());
 	}
 
 	public WebOut(InputStream source) {
 		this.source = source;
 	}
 
+	/**
+	 * content must be UTF-8
+	 * 
+	 * @throws UnsupportedEncodingException
+	 */
 	public WebOut(String content) {
-		this(new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
+		InputStream src = null;
+		try {
+			src = new ByteArrayInputStream(content.getBytes("UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			Logger.WEB.log("Invalid String encoding. Strings must be UTF-8! Stack Trace:\n" + e.getMessage() + '\n' + content);
+			e.printStackTrace();
+		}
+		source = src;
 	}
 
-	public WebOut addListener(ActionListener el) {
-		if (!listeners.contains(el)) {
-			listeners.add(el);
+	public WebOut addListener(Listener l) {
+		if (!listeners.contains(l)) {
+			listeners.add(l);
 		}
 		return this;
 	}
 
-	public WebOut removeListener(ActionListener el) {
-		listeners.remove(el);
+	public WebOut removeListener(Listener l) {
+		listeners.remove(l);
 		return this;
 	}
 
@@ -77,13 +92,29 @@ public class WebOut extends Thread {
 		return server;
 	}
 
+	public int getPort() {
+		return port;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getRemotePath() {
+		return remotePath;
+	}
+
+	public int getRetryCount() {
+		return retryCount;
+	}
+
+	public long getRetryWaitTime() {
+		return retryWaitTime;
+	}
+
 	public WebOut setServer(String server) {
 		this.server = server;
 		return this;
-	}
-
-	public int getPort() {
-		return port;
 	}
 
 	public WebOut setPort(int port) {
@@ -91,17 +122,9 @@ public class WebOut extends Thread {
 		return this;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
 	public WebOut setUsername(String username) {
 		this.username = username;
 		return this;
-	}
-
-	public String getPassword() {
-		return password;
 	}
 
 	public WebOut setPassword(String password) {
@@ -109,26 +132,14 @@ public class WebOut extends Thread {
 		return this;
 	}
 
-	public String getRemotePath() {
-		return remotePath;
-	}
-
 	public WebOut setRemotePath(String remotePath) {
 		this.remotePath = remotePath;
 		return this;
 	}
 
-	public int getRetryCount() {
-		return retryCount;
-	}
-
 	public WebOut setRetryCount(int retryCount) {
 		this.retryCount = retryCount;
 		return this;
-	}
-
-	public long getRetryWaitTime() {
-		return retryWaitTime;
 	}
 
 	public WebOut setRetryWaitTime(long retryWaitTime) {
@@ -142,7 +153,7 @@ public class WebOut extends Thread {
 		boolean success = false;
 		while (!success && tries < retryCount && status != Status.ERROR) {
 			source.mark(Integer.MAX_VALUE);
-			success = write(this.source);
+			success = write();
 			try {
 				source.reset();
 			} catch (IOException e) {
@@ -159,18 +170,18 @@ public class WebOut extends Thread {
 		} else {
 			status = Status.ERROR;
 		}
-		for (ActionListener el : listeners) {
-			el.actionPerformed(new ActionEvent(this, 0, ""));
+		for (Listener l : listeners) {
+			l.webOutEvent(this);
 		}
 	}
 
-	private boolean write(InputStream stream) {
+	private boolean write() {
 		FTPClient ftpClient = new FTPClient();
 		try {
 			ftpClient.connect(server, port);
 			ftpClient.login(username, password);
 			ftpClient.enterLocalPassiveMode();
-			boolean done = ftpClient.storeFile(remotePath, stream);
+			boolean done = ftpClient.storeFile(remotePath, source);
 			if (done) {
 				Logger.WEB.log("Transfer successful: " + remotePath);
 			} else {
@@ -178,7 +189,7 @@ public class WebOut extends Thread {
 			}
 			return done;
 		} catch (IOException e) {
-			Logger.WEB.log(e.getMessage());
+			Logger.WEB.log("Could not connect to server:\n" + e.getMessage());
 			return false;
 		} finally {
 			try {
