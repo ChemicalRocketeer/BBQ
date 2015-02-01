@@ -1,3 +1,0 @@
-# List of generated media files. The columns are tab-separated:
-# id | media file type | display name | media file path
-26	windows	Windows	C:\Users\Aaron\Desktop\BBQ App Executable\bbqapp_windows_0_1.exe
