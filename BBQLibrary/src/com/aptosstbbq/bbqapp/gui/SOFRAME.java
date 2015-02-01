@@ -11,8 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.aptosstbbq.bbqapp.menu.Ingredient;
 import com.aptosstbbq.bbqapp.menu.BBQMenu;
+import com.aptosstbbq.bbqapp.menu.Ingredient;
 import com.aptosstbbq.bbqapp.web.WebIn;
 import com.aptosstbbq.bbqapp.web.WebOut;
 
@@ -42,7 +42,9 @@ public class SOFRAME extends JFrame {
 	 * Create the frame.
 	 */
 	public SOFRAME() {
-		bleh = BBQMenu.fromJSON(new WebIn().read());
+		WebIn win = new WebIn();
+		win.run();
+		bleh = BBQMenu.fromJSON(win.getResult());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
