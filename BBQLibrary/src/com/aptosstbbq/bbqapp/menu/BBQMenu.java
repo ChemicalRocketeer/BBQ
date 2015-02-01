@@ -56,6 +56,23 @@ public class BBQMenu {
 		}
 		return false;
 	}
+	
+	public int getStatus(BBQMenuItem item) {
+		int worstStatus = Ingredient.AVAILABLE;
+		for (String ingName : item.getIngredients()) {
+			Ingredient ing = getIngredient(ingName);
+			if (ing != null && ing.getStatus() > worstStatus) {
+				worstStatus = ing.getStatus();
+			}
+		}
+		for (InterchangableIngredient inter : item.getInterchangableIngredients()) {
+			int s = getStatus(inter);
+			if (s > worstStatus) {
+				worstStatus = s;
+			}
+		}
+		return worstStatus;
+	}
 
 	/** Returns whether this InterchangableIngredient is available, running low, or sold out */
 	public int getStatus(InterchangableIngredient inter) {
@@ -207,17 +224,11 @@ public class BBQMenu {
 		steve.append("error flag? ").append(errorFlag).append('\n');
 		steve.append("Ingredients:\n");
 		for (Ingredient ing : ingredients) {
-			steve.append(ing.getName()).append(": ").append(ing.isSoldOut() ? "Sold Out\n" : "In Stock\n");
+			steve.append(ing.getName()).append(": ").append(ing.getStatusString()).append('\n');
 		}
 		steve.append("Menu Items:\n");
 		for (BBQMenuItem mi : menuItems) {
-			steve.append(mi.getName()).append(": ");
-			if (isSoldOut(mi)) {
-				steve.append("Sold Out");
-			} else {
-				steve.append(mi.getPrice());
-			}
-			steve.append("\n");
+			steve.append(mi.getName()).append(": ").append(Ingredient.STATUS_STRINGS[getStatus(mi)]).append('\n');
 		}
 		return steve.toString();
 	}

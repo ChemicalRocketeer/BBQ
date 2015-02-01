@@ -12,7 +12,7 @@ import org.apache.commons.net.ftp.FTPClient;
 import com.aptosstbbq.bbqapp.menu.BBQMenu;
 import com.aptosstbbq.bbqapp.util.Logger;
 
-public class WebOut extends Thread {
+public class WebOut implements Runnable {
 
 	public static interface Listener {
 
@@ -26,26 +26,27 @@ public class WebOut extends Thread {
 	private String username = "u857457562.larry";
 	private String password = "LarryIsRad";
 	private String remotePath = "menu.json";
-	private int retryCount = 4; // how many retries after a connection failure?
+	private int targetRetryCount = 4; // how many retries after a connection failure?
+	private int tries = 0; // how many tries so far?
 	private long retryWaitTime = 5000; // in ms
-	private Status status = Status.IDLE;
+	private volatile Status status = Status.IDLE;
 
 	private final InputStream source;
 
 	public static enum Status {
-		IDLE, WORKING, ERROR, COMPLETE;
+		IDLE, WORKING, ERROR, SUCCESS;
 	}
 
-	public static void out(BBQMenu bBQMenu) {
-		new WebOut(bBQMenu).start();
+	public static void out(BBQMenu menu) {
+		new Thread(new WebOut(menu)).start();
 	}
 
 	public static void out(String content) {
-		new WebOut(content).start();
+		new Thread(new WebOut(content)).start();
 	}
 
 	public static void out(InputStream content) {
-		new WebOut(content).start();
+		new Thread(new WebOut(content)).start();
 	}
 
 	public WebOut(BBQMenu menu) {
@@ -73,15 +74,19 @@ public class WebOut extends Thread {
 	}
 
 	public WebOut addListener(Listener l) {
-		if (!listeners.contains(l)) {
-			listeners.add(l);
+		synchronized (listeners) {
+			if (!listeners.contains(l)) {
+				listeners.add(l);
+			}
 		}
 		return this;
 	}
 
 	public WebOut removeListener(Listener l) {
-		listeners.remove(l);
-		return this;
+		synchronized (listeners) {
+			listeners.remove(l);
+			return this;
+		}
 	}
 
 	public Status getStatus() {
@@ -104,54 +109,76 @@ public class WebOut extends Thread {
 		return remotePath;
 	}
 
-	public int getRetryCount() {
-		return retryCount;
+	public int getTargetRetryCount() {
+		return targetRetryCount;
 	}
 
 	public long getRetryWaitTime() {
 		return retryWaitTime;
 	}
 
+	/** Get the tries so far */
+	public int getRetries() {
+		return tries;
+	}
+
 	public WebOut setServer(String server) {
-		this.server = server;
+		if (status == Status.IDLE) {
+			this.server = server;
+		}
 		return this;
 	}
 
 	public WebOut setPort(int port) {
-		this.port = port;
+		if (status == Status.IDLE) {
+			this.port = port;
+		}
 		return this;
 	}
 
 	public WebOut setUsername(String username) {
-		this.username = username;
+		if (status == Status.IDLE) {
+			this.username = username;
+		}
 		return this;
 	}
 
 	public WebOut setPassword(String password) {
-		this.password = password;
+		if (status == Status.IDLE) {
+			this.password = password;
+		}
 		return this;
 	}
 
 	public WebOut setRemotePath(String remotePath) {
-		this.remotePath = remotePath;
+		if (status == Status.IDLE) {
+			this.remotePath = remotePath;
+		}
 		return this;
 	}
 
-	public WebOut setRetryCount(int retryCount) {
-		this.retryCount = retryCount;
+	public WebOut setTargetRetryCount(int retryCount) {
+		if (status == Status.IDLE) {
+			this.targetRetryCount = retryCount;
+		}
 		return this;
 	}
 
 	public WebOut setRetryWaitTime(long retryWaitTime) {
-		this.retryWaitTime = retryWaitTime;
+		if (status == Status.IDLE) {
+			this.retryWaitTime = retryWaitTime;
+		}
 		return this;
 	}
 
 	public void run() {
-		int tries = 0;
+		tries = 0;
 		status = Status.WORKING;
 		boolean success = false;
-		while (!success && tries < retryCount && status != Status.ERROR) {
+		while (!success && tries < targetRetryCount && status != Status.ERROR) {
+			for (Listener l : listeners) {
+				l.webOutEvent(this);
+			}
 			source.mark(Integer.MAX_VALUE);
 			success = write();
 			try {
@@ -166,7 +193,7 @@ public class WebOut extends Thread {
 			}
 		}
 		if (success) {
-			status = Status.COMPLETE;
+			status = Status.SUCCESS;
 		} else {
 			status = Status.ERROR;
 		}

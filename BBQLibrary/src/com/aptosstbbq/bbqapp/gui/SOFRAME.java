@@ -56,7 +56,7 @@ public class SOFRAME extends JFrame {
 		JButton[] buttons = new JButton[bleh.getIngredients().size()];
 		for (int i = 0; i < buttons.length; i++) {
 			buttons[i] = new JButton(ings[i].getName());
-			buttons[i].setBackground(ings[i].isSoldOut() ? Color.RED : Color.GREEN);
+			buttons[i].setBackground(new Color(ings[i].getStatusColor()));
 			buttons[i].setContentAreaFilled(false);
 			buttons[i].setOpaque(true);
 			buttons[i].addActionListener(new ActionListener() {

@@ -34,15 +34,19 @@ public class MenuRegenerator {
 		menu.addMenuItem(new BBQMenuItem("BBQ Chicken Sandwich", "Bread", "Pulled Chicken"));
 		menu.addMenuItem(new BBQMenuItem("Bleu Pig Sandwich", "Bread", "Pulled Pork", "Bleu Cheese"));
 
-		System.out.println("Uploading fresh menu...");
-		new WebOut(menu).addListener(new WebOut.Listener() {
+		System.out.println("Uploading regenerated menu...");
+		new Thread(new WebOut(menu).addListener(new WebOut.Listener() {
 
 			@Override
 			public void webOutEvent(WebOut w) {
-				System.out.println(w.getStatus());
-				Interface.main(new String[0]);
+				if (w.getStatus() == WebOut.Status.WORKING) {
+					System.out.println("Attempt " + (w.getRetries() + 1) + " of " + w.getTargetRetryCount());
+				} else {
+					System.out.println(w.getStatus());
+					Interface.main(new String[0]);
+				}
 			}
-		}).start();
+		})).start();
 		// WebOut.out(menu);
 		ThreadedWriter.write(Const.MENU_FILE_NAME, menu.toJSON());
 	}

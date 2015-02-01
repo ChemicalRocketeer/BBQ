@@ -73,6 +73,14 @@ public class Ingredient {
 		return status;
 	}
 	
+	public String getStatusString() {
+		return STATUS_STRINGS[status];
+	}
+
+	public int getStatusColor() {
+		return STATUS_COLORS[status];
+	}
+
 	/** Cycles through the availability states, from AVAILABLE to RUNNING_LOW to SOLD_OUT and then back to AVAILABLE. Sends a message to Logger.SELL_OUT */
 	public void toggleStatus() {
 		status = (status + 1) % 3;
