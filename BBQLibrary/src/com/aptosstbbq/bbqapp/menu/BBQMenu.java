@@ -28,13 +28,13 @@ public class BBQMenu {
 		}
 	}
 
-	private List<Listener> listeners = new LinkedList<Listener>();
+	private transient List<Listener> listeners = new LinkedList<Listener>();
 
 	private List<Ingredient> ingredients = new ArrayList<Ingredient>();
 	private List<BBQMenuItem> menuItems = new ArrayList<BBQMenuItem>();
 	private List<BBQCategory> categories = new ArrayList<BBQCategory>();
 
-	private boolean errorFlag = false;
+	private transient boolean errorFlag = false;
 
 	public boolean isSoldOut(BBQCategory cat) {
 		for (String mi : cat.getMenuItems()) {
