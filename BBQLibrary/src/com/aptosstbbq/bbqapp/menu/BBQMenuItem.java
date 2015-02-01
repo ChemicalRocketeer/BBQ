@@ -1,51 +1,95 @@
 package com.aptosstbbq.bbqapp.menu;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.aptosstbbq.bbqapp.util.Utils;
+
 public class BBQMenuItem {
-	
-	private String name = "Unnamed BBQMenu Item";
-	private String description = "No Description";
+
+	private static long nextID = 0;
+	public final long id = nextID++;
+
+	private String name;
+	private String description = null;
 	private String category = null;
+	private String price = null;
 	private List<String> ingredients = new ArrayList<String>();
 	private List<InterchangableIngredient> interchangableIngredients = new ArrayList<InterchangableIngredient>();
-	private BigDecimal price = new BigDecimal("-1");
-	
-	public BBQMenuItem(String name, BigDecimal price, String... ings) {
-		setName(name);
-		setPrice(price);
+
+	public BBQMenuItem(String name, String... ings) {
+		this.name = name;
 		for (String ing : ings) {
 			addIngredient(ing);
 		}
 	}
-	
-	public BBQMenuItem(String name, String price, String... args) {
-		this (name, new BigDecimal(price), args);
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
+
+	public BBQMenuItem(String name, String description, String category, String price, List<String> ingredients, List<InterchangableIngredient> interchangables) {
 		this.name = name;
+		this.description = description;
+		this.category = category;
+		this.price = price;
+		this.ingredients = ingredients;
+		this.interchangableIngredients = interchangables;
+	}
+
+	protected BBQMenuItem setName(String name) {
+		this.name = name;
+		return this;
+	}
+
+	public BBQMenuItem setDescription(String description) {
+		this.description = description;
+		return this;
 	}
 	
-	public void addIngredient(String ing) {
-		if (!ingredients.contains(ing)){
-			ingredients.add(ing);
+	public BBQMenuItem setCategory(String cat) {
+		this.category = cat;
+		return this;
+	}
+	
+	public BBQMenuItem setCategory(BBQCategory cat) {
+		return setCategory(cat.getName());
+	}
+
+	public BBQMenuItem setPrice(String price) {
+		this.price = price;
+		return this;
+	}
+	
+	public BBQMenuItem addIngredient(Ingredient... ings) {
+		for (Ingredient ing : ings) {
+			addIngredient(ing.getName());
+		}
+		return this;
+	}
+
+	public BBQMenuItem addIngredient(String... ings) {
+		for (String ing : ings) {
+			if (!ingredients.contains(ing)) {
+				ingredients.add(ing);
+			}
+		}
+		return this;
+	}
+
+	public BBQMenuItem addInterchangableIngredient(InterchangableIngredient... ings) {
+		for (InterchangableIngredient ing : ings) {
+			if (!interchangableIngredients.contains(ing)) {
+				interchangableIngredients.add(ing);
+			}
+		}
+		return this;
+	}
+
+	protected void changeIngredientName(String oldName, String newName) {
+		Utils.replaceFirstInstance(ingredients, oldName, newName);
+		for (InterchangableIngredient inter : interchangableIngredients) {
+			Utils.replaceFirstInstance(inter.interchangables, oldName, newName);
 		}
 	}
-	
-	public void addInterchangableIngredient(InterchangableIngredient ing) {
-		if (!interchangableIngredients.contains(ing)){
-			interchangableIngredients.add(ing);
-		}
-	}
-	
+
 	public List<String> getIngredients() {
 		return Collections.unmodifiableList(ingredients);
 	}
@@ -54,15 +98,19 @@ public class BBQMenuItem {
 		return Collections.unmodifiableList(interchangableIngredients);
 	}
 
-	public BigDecimal getPrice() {
+	public String getName() {
+		return name;
+	}
+
+	public String getPrice() {
 		return price;
 	}
 	
-	public void setPrice(BigDecimal price) {
-		this.price = price;
+	public String getDescription() {
+		return description;
 	}
-	
-	public void setPrice(String price) {
-		this.price = new BigDecimal(price);
+
+	public String getCategory() {
+		return category;
 	}
 }
