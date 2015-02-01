@@ -1,49 +1,41 @@
 {
   "ingredients": [
     {
-      "listeners": [],
       "name": "Bread",
       "defaultStatus": 0,
       "status": 0
     },
     {
-      "listeners": [],
       "name": "Tri-Tip",
       "defaultStatus": 0,
       "status": 0
     },
     {
-      "listeners": [],
       "name": "Cold Beef",
       "defaultStatus": 0,
       "status": 0
     },
     {
-      "listeners": [],
       "name": "Pulled Chicken",
       "defaultStatus": 0,
       "status": 0
     },
     {
-      "listeners": [],
       "name": "Pulled Pork",
       "defaultStatus": 0,
       "status": 0
     },
     {
-      "listeners": [],
       "name": "Ribs",
       "defaultStatus": 0,
-      "status": 0
+      "status": 1
     },
     {
-      "listeners": [],
       "name": "Salad",
       "defaultStatus": 0,
-      "status": 0
+      "status": 2
     },
     {
-      "listeners": [],
       "name": "Bleu Cheese",
       "defaultStatus": 0,
       "status": 0

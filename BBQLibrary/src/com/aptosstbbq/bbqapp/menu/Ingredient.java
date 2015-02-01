@@ -31,7 +31,7 @@ public class Ingredient {
 	 */
 	public static final int[] STATUS_COLORS = { 0x00FF00, 0xFFFF00, 0xFF0000 };
 
-	private List<Listener> listeners = new LinkedList<>();
+	private transient List<Listener> listeners = new LinkedList<>();
 
 	private String name = "";
 	private int defaultStatus = 0;

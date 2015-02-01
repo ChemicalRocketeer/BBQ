@@ -82,7 +82,7 @@ public class BBQMenu {
 			Ingredient ingr = getIngredient(ing);
 			if (ingr != null) {
 				int stat = getIngredient(ing).getStatus();
-				if (stat > bestStatus) bestStatus = stat;
+				if (stat < bestStatus) bestStatus = stat;
 				if (bestStatus == Ingredient.AVAILABLE) return bestStatus;
 			}
 		}

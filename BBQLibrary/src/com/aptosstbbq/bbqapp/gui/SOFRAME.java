@@ -13,6 +13,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.aptosstbbq.bbqapp.menu.BBQMenu;
 import com.aptosstbbq.bbqapp.menu.Ingredient;
+import com.aptosstbbq.bbqapp.util.Const;
+import com.aptosstbbq.bbqapp.util.ThreadedWriter;
 import com.aptosstbbq.bbqapp.web.WebIn;
 import com.aptosstbbq.bbqapp.web.WebOut;
 
@@ -78,6 +80,8 @@ public class SOFRAME extends JFrame {
 		b.setOpaque(true);
 		b.setContentAreaFilled(false);
 		b.setOpaque(true);
-		WebOut.out(bleh);
+		String json = bleh.toJSON();
+		WebOut.out(json);
+		ThreadedWriter.write(Const.MENU_FILE_NAME, json, false);
 	}
 }
