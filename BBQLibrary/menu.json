@@ -1,125 +1,145 @@
 {
-  "ingredients": {
-    "Pulled Chicken": {
-      "name": "Pulled Chicken",
-      "soldOut": false
-    },
-    "Cold Beef": {
-      "name": "Cold Beef",
-      "soldOut": false
-    },
-    "Tri-Tip": {
-      "name": "Tri-Tip",
-      "soldOut": false
-    },
-    "Pulled Pork": {
-      "name": "Pulled Pork",
-      "soldOut": false
-    },
-    "Bleu Cheese": {
-      "name": "Bleu Cheese",
-      "soldOut": false
-    },
-    "Ribs": {
-      "name": "Ribs",
-      "soldOut": false
-    },
-    "Salad": {
-      "name": "Salad",
-      "soldOut": false
-    },
-    "Bread": {
+  "ingredients": [
+    {
+      "listeners": [],
       "name": "Bread",
-      "soldOut": false
+      "defaultStatus": 0,
+      "status": 0
+    },
+    {
+      "listeners": [],
+      "name": "Tri-Tip",
+      "defaultStatus": 0,
+      "status": 0
+    },
+    {
+      "listeners": [],
+      "name": "Cold Beef",
+      "defaultStatus": 0,
+      "status": 0
+    },
+    {
+      "listeners": [],
+      "name": "Pulled Chicken",
+      "defaultStatus": 0,
+      "status": 0
+    },
+    {
+      "listeners": [],
+      "name": "Pulled Pork",
+      "defaultStatus": 0,
+      "status": 0
+    },
+    {
+      "listeners": [],
+      "name": "Ribs",
+      "defaultStatus": 0,
+      "status": 0
+    },
+    {
+      "listeners": [],
+      "name": "Salad",
+      "defaultStatus": 0,
+      "status": 0
+    },
+    {
+      "listeners": [],
+      "name": "Bleu Cheese",
+      "defaultStatus": 0,
+      "status": 0
     }
-  },
+  ],
   "menuItems": [
     {
-      "name": "Tri-Tip Sandwich",
-      "description": "No Description",
+      "id": 0,
+      "name": "BBQ Sandwiches",
       "ingredients": [
+        "$9",
         "Bread",
-        "Tri-Tip"
+        "BBQ Sauce"
       ],
       "interchangableIngredients": [
         {
           "interchangables": [
             "Tri-Tip",
-            "Cold Beef"
+            "Cold Beef",
+            "Pulled Chicken",
+            "Pulled Pork",
+            "Cold Pork"
           ]
         }
-      ],
-      "price": 14.99
+      ]
     },
     {
+      "id": 1,
       "name": "Tri-Tip Meal",
-      "description": "No Description",
       "ingredients": [
+        "$9",
         "Bread",
         "Tri-Tip"
       ],
-      "interchangableIngredients": [],
-      "price": 15.99
+      "interchangableIngredients": []
     },
     {
+      "id": 2,
       "name": "Tri-Tip Salad",
-      "description": "No Description",
       "ingredients": [
+        "$7",
         "Salad",
         "Tri-Tip"
       ],
-      "interchangableIngredients": [],
-      "price": 14.99
+      "interchangableIngredients": []
     },
     {
+      "id": 3,
       "name": "Rib Sandwich",
-      "description": "No Description",
       "ingredients": [
+        "$12",
         "Bread",
         "Ribs"
       ],
-      "interchangableIngredients": [],
-      "price": 14.99
+      "interchangableIngredients": []
     },
     {
+      "id": 4,
       "name": "Pulled Pork Sandwich",
-      "description": "No Description",
       "ingredients": [
+        "$9",
         "Bread",
         "Pulled Pork"
       ],
-      "interchangableIngredients": [],
-      "price": 14.99
+      "interchangableIngredients": []
     },
     {
+      "id": 5,
       "name": "Bread",
-      "description": "No Description",
       "ingredients": [
+        "",
         "Bread"
       ],
-      "interchangableIngredients": [],
-      "price": 14.99
+      "interchangableIngredients": []
     },
     {
+      "id": 6,
       "name": "BBQ Chicken Sandwich",
-      "description": "No Description",
       "ingredients": [
+        "14.99",
         "Bread",
         "Pulled Chicken"
       ],
-      "interchangableIngredients": [],
-      "price": 14.99
+      "interchangableIngredients": []
     },
     {
+      "id": 7,
       "name": "Bleu Pig Sandwich",
-      "description": "No Description",
       "ingredients": [
+        "14.99",
         "Bread",
         "Pulled Pork",
         "Bleu Cheese"
       ],
-      "interchangableIngredients": [],
-      "price": 14.99
+      "interchangableIngredients": []
     }
-  ]
+  ],
+  "categories": []
 }

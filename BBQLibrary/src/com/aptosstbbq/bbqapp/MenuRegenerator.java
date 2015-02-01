@@ -1,5 +1,6 @@
 package com.aptosstbbq.bbqapp;
 
+import com.aptosstbbq.bbqapp.gui.Interface;
 import com.aptosstbbq.bbqapp.menu.BBQMenu;
 import com.aptosstbbq.bbqapp.menu.BBQMenuItem;
 import com.aptosstbbq.bbqapp.menu.Ingredient;
@@ -33,11 +34,13 @@ public class MenuRegenerator {
 		menu.addMenuItem(new BBQMenuItem("BBQ Chicken Sandwich", "14.99", "Bread", "Pulled Chicken"));
 		menu.addMenuItem(new BBQMenuItem("Bleu Pig Sandwich", "14.99", "Bread", "Pulled Pork", "Bleu Cheese"));
 
+		System.out.println("Uploading fresh menu...");
 		new WebOut(menu).addListener(new WebOut.Listener() {
 
 			@Override
 			public void webOutEvent(WebOut w) {
 				System.out.println(w.getStatus());
+				Interface.main(new String[0]);
 			}
 		}).start();
 		// WebOut.out(menu);
