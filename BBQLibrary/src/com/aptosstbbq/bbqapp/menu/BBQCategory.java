@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.aptosstbbq.bbqapp.util.Utils;
+
 public class BBQCategory {
 
 	private String name;
@@ -74,5 +76,12 @@ public class BBQCategory {
 			}
 		}
 		return this;
+	}
+
+	protected void changeMenuItemName(String oldName, String newName) {
+		Utils.replaceFirstInstance(menuItems, oldName, newName);
+		for (BBQCategory sub : subCategories) {
+			sub.changeMenuItemName(oldName, newName);
+		}
 	}
 }

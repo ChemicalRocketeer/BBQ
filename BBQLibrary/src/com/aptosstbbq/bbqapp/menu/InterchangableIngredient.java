@@ -6,7 +6,7 @@ import java.util.List;
 
 public class InterchangableIngredient {
 	
-	List<String> interchangables = new ArrayList<String>();
+	protected List<String> interchangables = new ArrayList<String>();
 	
 	public InterchangableIngredient(String... vars) {
 		for (String ing : vars) {

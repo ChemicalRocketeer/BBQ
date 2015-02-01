@@ -19,7 +19,13 @@ public class BBQMenu {
 	}
 
 	public static enum Event {
-		ERROR, RESET, ADD_INGREDIENT, ADD_ITEM, ADD_CAT;
+		ERROR, RESET, ADD_INGREDIENT, ADD_ITEM, ADD_CAT, CHANGE_INGREDIENT, CHANGE_ITEM, CHANGE_CAT;
+	}
+
+	private void fireEvent(Event event, Object arg) {
+		for (Listener l : listeners) {
+			l.BBQMenuEvent(this, event, arg);
+		}
 	}
 
 	private List<Listener> listeners = new LinkedList<Listener>();
@@ -65,27 +71,50 @@ public class BBQMenu {
 		if (!ingredients.contains(ing)) {
 			ingredients.add(ing);
 		}
-		for (Listener l : listeners) {
-			l.BBQMenuEvent(this, Event.ADD_INGREDIENT, ing);
-		}
+		fireEvent(Event.ADD_INGREDIENT, ing);
 	}
 
 	public void addMenuItem(BBQMenuItem item) {
 		if (!menuItems.contains(item)) {
 			menuItems.add(item);
 		}
-		for (Listener l : listeners) {
-			l.BBQMenuEvent(this, Event.ADD_ITEM, item);
-		}
+		fireEvent(Event.ADD_ITEM, item);
 	}
 
 	public void addCategory(BBQCategory item) {
 		if (!categories.contains(item)) {
 			categories.add(item);
 		}
-		for (Listener l : listeners) {
-			l.BBQMenuEvent(this, Event.ADD_CAT, item);
+		fireEvent(Event.ADD_CAT, item);
+	}
+
+	public void setName(Ingredient ing, String name) {
+		String old = ing.getName();
+		ing.setName(name);
+		for (BBQMenuItem item : menuItems) {
+			item.changeIngredientName(old, name);
 		}
+		fireEvent(Event.CHANGE_INGREDIENT, ing);
+	}
+
+	public void setName(BBQMenuItem item, String name) {
+		String old = item.getName();
+		item.setName(name);
+		for (BBQCategory cat : categories) {
+			cat.changeMenuItemName(old, name);
+		}
+		fireEvent(Event.CHANGE_ITEM, item);
+	}
+
+	public void setName(BBQCategory cat, String name) {
+		String old = cat.getName();
+		cat.setName(name);
+		for (BBQMenuItem item : menuItems) {
+			if (item.getCategory().equals(old)) {
+				item.setCategory(name);
+			}
+		}
+		fireEvent(Event.CHANGE_CAT, cat);
 	}
 
 	public List<Ingredient> getIngredients() {
@@ -143,9 +172,7 @@ public class BBQMenu {
 			return gson.toJson(this);
 		} catch (JsonParseException e) {
 			errorFlag = true;
-			for (Listener l : listeners) {
-				l.BBQMenuEvent(this, Event.ERROR, e);
-			}
+			fireEvent(Event.ERROR, e);
 		}
 		return "";
 	}
@@ -154,9 +181,7 @@ public class BBQMenu {
 		for (Ingredient ing : getIngredients()) {
 			ing.status = ing.getDefaultStatus(); // set directly so that all the changes are not logged
 		}
-		for (Listener l : listeners) {
-			l.BBQMenuEvent(this, Event.RESET, null);
-		}
+		fireEvent(Event.RESET, null);
 	}
 
 	private BBQMenu setErrorFlag(boolean state) {

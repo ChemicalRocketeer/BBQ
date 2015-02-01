@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.aptosstbbq.bbqapp.util.Utils;
+
 public class BBQMenuItem {
 
 	private static long nextID = 0;
@@ -79,6 +81,13 @@ public class BBQMenuItem {
 			}
 		}
 		return this;
+	}
+
+	protected void changeIngredientName(String oldName, String newName) {
+		Utils.replaceFirstInstance(ingredients, oldName, newName);
+		for (InterchangableIngredient inter : interchangableIngredients) {
+			Utils.replaceFirstInstance(inter.interchangables, oldName, newName);
+		}
 	}
 
 	public List<String> getIngredients() {
