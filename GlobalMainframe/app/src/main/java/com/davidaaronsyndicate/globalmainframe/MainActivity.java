@@ -1,20 +1,16 @@
 package com.davidaaronsyndicate.globalmainframe;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.GridLayout;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aptosstbbq.bbqapp.menu.BBQMenu;
@@ -33,27 +29,26 @@ public class MainActivity extends ActionBarActivity implements WebIn.Listener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new WebIn().addListener(this).execute(WebIn.defaultURL);
+        new Thread(new WebIn().addListener(this)).start();
     }
 
     private void displayButtons(){
-        GradientDrawable shape = new GradientDrawable();
-        shape.setCornerRadius(8);
-        Display d = ((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-        int screenWidth = d.getWidth();
+        //GradientDrawable shape = new GradientDrawable();
+        //shape.setCornerRadius(8);
+        //Display d = ((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        //int screenWidth = d.getWidth();
         List<Ingredient> ings = menu.getIngredients();
         GridLayout layout = (GridLayout) findViewById(R.id.setSoldOut);
         layout.setColumnCount(4);
         for(Ingredient ing : ings){
             Button b = new Button(this);
-           // b.setBackground(shape);
-            b.setWidth(screenWidth/4);
+            //b.setBackground(shape);
+            //b.setWidth(screenWidth / 4);
             b.setText(ing.getName());
-            b.setBackgroundColor(ing.isSoldOut() ? Color.RED : Color.GREEN);
+            b.setBackgroundColor(ing.getStatusColor());
             b.setGravity(Gravity.CENTER);
 
             layout.addView(b);
-            Log.i(TAG, ing.getName());
             b.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -65,24 +60,34 @@ public class MainActivity extends ActionBarActivity implements WebIn.Listener {
         }
     }
 
-    public void WebInComplete(WebIn win) {
-        if (win.getResult().equals("")) {
+    @Override
+    public void webInComplete(WebIn win, WebIn.Status status, String s) {
+        if ("".equals(win.getResult())) {
             Log.w(TAG, "failed to read menu from web");
-            LinearLayout build = (LinearLayout) findViewById(R.id.setSoldOut);
-            TextView v = new TextView(this);
+            final RelativeLayout build = (RelativeLayout) findViewById(R.id.baseLayout);
+            final TextView v = new TextView(this);
             v.setText("Failed to read menu from web");
             v.setTextColor(Color.WHITE);
-            build.addView(v);
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    build.addView(v);
+                }
+            });
         } else {
             menu = BBQMenu.fromJSON(win.getResult());
-            displayButtons();
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    displayButtons();
+                }
+            });
         }
     }
     private void setButtonColor(Button b){
           Ingredient ing = menu.getIngredient(b.getText().toString());
-          menu.toggleSoldOut(ing.getName());
-          b.setBackgroundColor(ing.isSoldOut() ? Color.RED : Color.GREEN);
+          menu.getIngredient(ing.getName()).toggleStatus();
+          b.setBackgroundColor(ing.getStatusColor());
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

@@ -29,7 +29,7 @@ public class Ingredient {
 	 * To use, just access the array using the status as a parameter. For example: STATUS_COLORS[AVAILABLE] will give you the hex of Color.GREEN
 	 * The colors are hex integers instead of using a color library so that they can be cross-platform.
 	 */
-	public static final int[] STATUS_COLORS = { 0x00FF00, 0xFFFF00, 0xFF0000 };
+	public static final int[] STATUS_COLORS = { 0xFF00FF00, 0xFFFFFF00, 0xFFFF0000 };
 
 	private transient List<Listener> listeners = new LinkedList<>();
 
