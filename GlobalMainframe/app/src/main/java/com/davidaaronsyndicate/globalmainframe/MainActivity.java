@@ -1,13 +1,16 @@
 package com.davidaaronsyndicate.globalmainframe;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.RelativeLayout;
@@ -35,15 +38,16 @@ public class MainActivity extends ActionBarActivity implements WebIn.Listener {
     private void displayButtons(){
         //GradientDrawable shape = new GradientDrawable();
         //shape.setCornerRadius(8);
-        //Display d = ((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-        //int screenWidth = d.getWidth();
+        Display d = ((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        int screenWidth = d.getWidth();
         List<Ingredient> ings = menu.getIngredients();
         GridLayout layout = (GridLayout) findViewById(R.id.setSoldOut);
-        layout.setColumnCount(4);
+        layout.setColumnCount(3);
+        layout.setRowCount(ings.size()/3);
         for(Ingredient ing : ings){
             Button b = new Button(this);
-            //b.setBackground(shape);
-            //b.setWidth(screenWidth / 4);
+           // b.setBackground(shape);
+            b.setWidth(screenWidth / 3);
             b.setText(ing.getName());
             b.setBackgroundColor(ing.getStatusColor());
             b.setGravity(Gravity.CENTER);

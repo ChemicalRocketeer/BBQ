@@ -18,7 +18,7 @@ import com.aptosstbbq.bbqapp.web.WebIn;
 
 import java.util.List;
 
-public class SoldOut extends ActionBarActivity implements WebIn.Listener {
+public class SoldOut extends ActionBarActivity implements WebInTask.Listener {
 
     public static final String TAG = "Aptos St BBQ";
 
@@ -31,8 +31,7 @@ public class SoldOut extends ActionBarActivity implements WebIn.Listener {
                 Log.e(TAG, "Error log:\n" + message);
             }
         });
-        Thread steve = new Thread(new WebIn().addListener(this), "WebIn Menu Read Thread");
-        steve.start();
+      new WebInTask().addListener(this).execute(WebInTask.defaultURL);
     }
 
     private void displaySoldOutItems(BBQMenu menu){
@@ -61,9 +60,9 @@ public class SoldOut extends ActionBarActivity implements WebIn.Listener {
     }
 
     @Override
-    public void webInComplete(WebIn win, WebIn.Status st, String result) {
-        if (st != WebIn.Status.SUCCESS) {
-            Log.i(TAG, win.getResult());
+    public void WebInComplete(WebInTask win) {
+
+        if (win.getWebInStatus() != WebIn.Status.SUCCESS) {
             Log.w(TAG, "failed to read menu from web");
             LinearLayout build = (LinearLayout) findViewById(R.id.soldOutDisplay);
             TextView v = new TextView(this);
@@ -71,7 +70,7 @@ public class SoldOut extends ActionBarActivity implements WebIn.Listener {
             v.setTextColor(Color.WHITE);
             build.addView(v);
         } else {
-            displaySoldOutItems(BBQMenu.fromJSON(result));
+            displaySoldOutItems(BBQMenu.fromJSON(win.getResult()));
         }
     }
 
